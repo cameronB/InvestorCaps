@@ -1,4 +1,6 @@
 InvestorCaps::Application.routes.draw do
+  get "companies/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
