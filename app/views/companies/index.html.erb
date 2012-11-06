@@ -1,0 +1,15 @@
+<% provide(:title, 'Companies') %>
+<h1>Companies</h1>
+
+<%= will_paginate %>
+
+<ul class="companies">
+  <% @companies.each do |company| %>
+      <li>
+        <%= company.symbol %>
+        <%= link_to company.name, company %>
+      </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

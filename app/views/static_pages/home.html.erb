@@ -1,4 +1,19 @@
-<div class="center">
+<% if signed_in? %>
+    <div class="row">
+      <aside class="span4">
+        <section>
+          <%= render 'shared/user_info' %>
+        </section>
+      </aside>
+    </div>
+<% else %>
+    <div class="center hero-unit">
+      <h1></h1>
+      <h1>InvestorCaps</h1>
 
-</div>
+      <%= link_to "Shareholder Registration", signup_path,
+                  class: "btn btn-large btn-primary" %>
+
+    </div>
+<% end %>
 

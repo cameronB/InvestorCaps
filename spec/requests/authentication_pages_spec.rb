@@ -36,6 +36,7 @@ describe "Authentication" do
 
       it { should have_selector('title', text: user.name) }
 
+      it { should have_link('Companies', href: companies_path) }
       it { should have_link('Users', href: users_path) }
       it { should have_link('Profile', href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
@@ -84,6 +85,14 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Companies Controller" do
+
+        describe "visiting the index" do
+           before { visit companies_path }
+           it { should have_selector('title', text: 'Sign in') }
+        end
+      end
+
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
@@ -100,9 +109,9 @@ describe "Authentication" do
           before { visit users_path }
           it { should have_selector('title', text: 'Sign in') }
         end
+
       end
     end
-
 
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }

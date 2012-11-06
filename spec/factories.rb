@@ -10,3 +10,10 @@ FactoryGirl.define do
     end
   end
 end
+
+FactoryGirl.define do
+  factory :company do
+    sequence(:symbol)  { |n| "LC #{n}" }
+    sequence(:name) { |n| "Legacy Iron Ore#{n}"}
+  end
+end
