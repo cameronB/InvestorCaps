@@ -13,7 +13,7 @@ end
 
 FactoryGirl.define do
   factory :company do
-    sequence(:symbol)  { |n| "LC #{n}" }
-    sequence(:name) { |n| "Legacy Iron Ore#{n}"}
+    symbol  "Lcy"
+    name    "Legacy Iron Ore"
   end
 end

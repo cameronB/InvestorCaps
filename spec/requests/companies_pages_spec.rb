@@ -27,11 +27,8 @@ describe "Company pages" do
 
       describe "pagination" do
 
-        before(:all) { 30.times { FactoryGirl.create(:company) } }
+        before(:all) { 1.times { FactoryGirl.create(:company) } }
         after(:all)  { Company.delete_all }
-
-        let(:first_page) { User.paginate(page: 1) }
-        let(:second_page) { User.paginate(page: 2) }
 
         it "should list each company" do
           Company.paginate(page: 1).each do |company|
