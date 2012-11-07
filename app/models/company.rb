@@ -11,7 +11,7 @@
 
 class Company < ActiveRecord::Base
   attr_accessible :name, :symbol
-  before_save { self.symbol.downcase! }
+  before_save { self.symbol.upcase! }
 
   validates :symbol, presence: true, length: { maximum: 3 }, uniqueness: { case_sensitive: false }
   validates :name, presence: true, length: { maximum: 50 }

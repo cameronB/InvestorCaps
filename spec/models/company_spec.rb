@@ -23,12 +23,12 @@ describe Company do
   it { should be_valid }
 
   describe "symbol with mixed case" do
-    let(:mixed_case_symbol) { "LcY" }
+    let(:mixed_case_symbol) { "lcy" }
 
-    it "should be saved as all lower-case" do
+    it "should be saved as all upper-case" do
       @company.symbol = mixed_case_symbol
       @company.save
-      @company.reload.symbol.should == mixed_case_symbol.downcase
+      @company.reload.symbol.should == mixed_case_symbol.upcase
     end
   end
 
