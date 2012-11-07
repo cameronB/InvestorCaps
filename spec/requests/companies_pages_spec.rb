@@ -35,6 +35,20 @@ describe "Company pages" do
             page.should have_selector('li', text: company.name)
           end
         end
+
+        describe "as an admin user" do
+          let(:admin) { FactoryGirl.create(:admin) }
+          before do
+            sign_in admin
+            visit companies_path
+          end
+
+          it { should have_link('delete', href: company_path(Company.first)) }
+          it "should be able to delete another user" do
+            expect { click_link('delete') }.to change(Company, :count).by(-1)
+          end
+          it { should_not have_link('delete', href: company_path(admin)) }
+        end
       end
     end
   end

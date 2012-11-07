@@ -4,12 +4,7 @@
 <%= will_paginate %>
 
 <ul class="companies">
-  <% @companies.each do |company| %>
-      <li>
-        <%= company.symbol %>
-        <%= link_to company.name, company %>
-      </li>
-  <% end %>
+  <%= render @companies %>
 </ul>
 
 <%= will_paginate %>

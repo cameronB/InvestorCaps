@@ -91,6 +91,18 @@ describe "Authentication" do
            before { visit companies_path }
            it { should have_selector('title', text: 'Sign in') }
         end
+
+        describe "as non-admin user" do
+          let(:company) { FactoryGirl.create(:company) }
+          let(:non_admin) { FactoryGirl.create(:user) }
+
+          before { sign_in non_admin }
+
+          describe "submitting a DELETE request to the Companies#destroy action" do
+            before { delete company_path(company) }
+            specify { response.should redirect_to(root_url) }
+          end
+        end
       end
 
       describe "in the Users controller" do
