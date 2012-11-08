@@ -9,11 +9,11 @@ FactoryGirl.define do
       admin true
     end
   end
-end
 
-FactoryGirl.define do
-  factory :company do
-    symbol  "Lcy"
-    name    "Legacy Iron Ore"
+  FactoryGirl.define do
+    factory :company do
+      symbol  "Lcy"
+      name    "Legacy Iron Ore"
+   end
   end
 end

@@ -36,7 +36,6 @@ describe "Authentication" do
 
       it { should have_selector('title', text: user.name) }
 
-      it { should have_link('Companies', href: companies_path) }
       it { should have_link('Users', href: users_path) }
       it { should have_link('Profile', href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
@@ -88,8 +87,8 @@ describe "Authentication" do
       describe "in the Companies Controller" do
 
         describe "visiting the index" do
-           before { visit companies_path }
-           it { should have_selector('title', text: 'Sign in') }
+          before { visit companies_path }
+          it { should have_selector('title', text: 'Sign in') }
         end
 
         describe "as non-admin user" do
@@ -122,8 +121,16 @@ describe "Authentication" do
           it { should have_selector('title', text: 'Sign in') }
         end
 
+        describe "visiting the following page" do
+          before { visit following_user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
+
+        describe "visiting the followers page" do
+          before { visit followers_user_path(user) }
+          it { should have_selector('title', text: 'Sign in') }
+        end
       end
-    end
 
     describe "as wrong user" do
       let(:user) { FactoryGirl.create(:user) }
@@ -140,6 +147,8 @@ describe "Authentication" do
         specify { response.should redirect_to(root_url) }
       end
     end
+  end
+
 
     describe "as non-admin user" do
       let(:user) { FactoryGirl.create(:user) }

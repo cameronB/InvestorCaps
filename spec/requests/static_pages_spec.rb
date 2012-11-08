@@ -7,8 +7,8 @@ describe "Static pages" do
   describe "Home page" do
     before { visit root_path }
 
+    it { should have_selector('h1', text: 'InvestorCaps') }
     it { should have_selector('title', text: full_title('')) }
-    it { should_not have_selector 'title', text: '| Home' }
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
@@ -16,7 +16,25 @@ describe "Static pages" do
         sign_in user
         visit root_path
       end
+
+      describe "follower/following counts" do
+        let(:other_user) { FactoryGirl.create(:user) }
+        before do
+          other_user.follow!(user)
+          visit root_path
+        end
+
+        it { should have_link("0 following", href: following_user_path(user)) }
+        it { should have_link("1 followers", href: followers_user_path(user)) }
+      end
     end
+  end
+
+  describe "Help page" do
+    before { visit help_path }
+
+    it { should have_selector('h1', text: 'Help') }
+    it { should have_selector('title', text: full_title('Help')) }
   end
 
   describe "About page" do
@@ -40,8 +58,9 @@ describe "Static pages" do
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
     click_link "Home"
-    click_link "Register"
+    click_link "Shareholder Registration"
     page.should have_selector 'title', text: full_title('Register')
     click_link "InvestorCaps"
+    page.should have_selector 'h1', text: 'InvestorCaps'
   end
 end
