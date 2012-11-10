@@ -9,6 +9,7 @@ describe "Static pages" do
 
     it { should have_selector('h1', text: 'InvestorCaps') }
     it { should have_selector('title', text: full_title('')) }
+    it { should have_selector('title', text: ' | Home')}
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
