@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081e7b49-3e81-4b13-af1e-e753de97503f" name="Default" comment="updated readme">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/companies/show_follow_companies.html.erb" afterPath="$PROJECT_DIR$/app/views/companies/show_follow_companies.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/show_follow.html.erb" afterPath="$PROJECT_DIR$/app/views/users/show_follow.html.erb" />
-    </list>
+    <list default="true" id="081e7b49-3e81-4b13-af1e-e753de97503f" name="Default" comment="updated readme" />
     <ignored path="InvestorCaps.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,7 +67,7 @@
       <file leaf-file-name="show_follow.html.erb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/show_follow.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="39" selection-start="117" selection-end="117" vertical-scroll-proportion="0.072463766">
+            <state line="15" column="164" selection-start="400" selection-end="400" vertical-scroll-proportion="0.27173913">
               <folding />
             </state>
           </provider>
@@ -1159,16 +1155,16 @@
       <method />
     </configuration>
     <list size="10">
-      <item index="0" class="java.lang.String" itemvalue="RSpec.users_pages_spec" />
-      <item index="1" class="java.lang.String" itemvalue="RSpec.companies_pages_spec" />
-      <item index="2" class="java.lang.String" itemvalue="RSpec.authentication_pages_spec" />
-      <item index="3" class="java.lang.String" itemvalue="RSpec.relationships_controller_spec" />
-      <item index="4" class="java.lang.String" itemvalue="RSpec.company_relationships_spec" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Run RSpec Suite" />
-      <item index="6" class="java.lang.String" itemvalue="Rails.Production: InvestorCaps" />
-      <item index="7" class="java.lang.String" itemvalue="Rails.Development: InvestorCaps" />
-      <item index="8" class="java.lang.String" itemvalue="Rake.test" />
-      <item index="9" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="0" class="java.lang.String" itemvalue="RSpec.Run RSpec Suite" />
+      <item index="1" class="java.lang.String" itemvalue="Rails.Production: InvestorCaps" />
+      <item index="2" class="java.lang.String" itemvalue="Rails.Development: InvestorCaps" />
+      <item index="3" class="java.lang.String" itemvalue="Rake.test" />
+      <item index="4" class="java.lang.String" itemvalue="Rake.spec" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.users_pages_spec" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.companies_pages_spec" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.authentication_pages_spec" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.relationships_controller_spec" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.company_relationships_spec" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -1402,7 +1398,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/show_follow.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="39" selection-start="117" selection-end="117" vertical-scroll-proportion="0.072463766">
+        <state line="15" column="164" selection-start="400" selection-end="400" vertical-scroll-proportion="0.27173913">
           <folding />
         </state>
       </provider>
