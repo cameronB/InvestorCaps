@@ -1,13 +1,20 @@
 InvestorCaps::Application.routes.draw do
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :cfollowing
     end
   end
 
-  resources :companies
+  resources :companies do
+    member do
+      get :cfollowers
+    end
+  end
+
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :company_relationships, only: [:create, :destroy]
 
   #home
   root to: 'static_pages#home'

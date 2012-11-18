@@ -31,9 +31,12 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+
   it { should respond_to(:relationships) }
-  it { should respond_to(:followed_users) }
+  it { should respond_to(:company_relationships) }
   it { should respond_to(:reverse_relationships) }
+
+  it { should respond_to(:followed_users) }
   it { should respond_to(:followers) }
   it { should respond_to(:following?) }
   it { should respond_to(:follow!) }
@@ -175,6 +178,29 @@ describe User do
 
       it { should_not be_following(other_user) }
       its(:followed_users) { should_not include(other_user) }
+    end
+  end
+
+  describe "users can follow a company" do
+    let(:other_company) { FactoryGirl.create(:company) }
+    before do
+      @user.save
+      @user.cfollow!(other_company)
+  end
+
+  it { should be_cfollowing(other_company) }
+  its(:cfollowed_companies) { should include(other_company) }
+
+   describe "Check that Company is now being followed by the user" do
+      subject { other_company }
+      its(:cfollowers) {should include(@user) }
+   end
+
+    describe "user can unfollow a company" do
+      before { @user.cunfollow!(other_company) }
+
+      it { should_not be_cfollowing(other_company) }
+      its(:cfollowed_companies) { should_not include(other_company) }
     end
   end
 end

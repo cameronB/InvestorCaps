@@ -180,6 +180,24 @@ describe "User pages" do
     end
   end
 
+  describe "Check Users followed Companies" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:other_company) { FactoryGirl.create(:company) }
+    before { user.cfollow!(other_company) }
+
+    describe "Companies followed" do
+      before do
+        sign_in user
+        visit cfollowing_user_path(user)
+      end
+
+      it { should have_selector('title', text: full_title('Following')) }
+      it { should have_selector('h3', text: 'Following') }
+      it { should have_link(other_company.name, href: company_path(other_company)) }
+    end
+  end
+
+
   describe "following/followers" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }

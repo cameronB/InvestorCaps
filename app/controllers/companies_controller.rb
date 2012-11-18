@@ -16,6 +16,13 @@ class CompaniesController < ApplicationController
     redirect_to companies_path
   end
 
+  def cfollowers
+    @title = "Followers"
+    @company = Company.find(params[:id])
+    @companies = @company.cfollowers.paginate(page: params[:page])
+    render 'show_follow_companies'
+  end
+
   def new
   end
 

@@ -4,6 +4,7 @@ namespace :db do
     make_users
     make_companies
     make_relationships
+    make_company_relationships
   end
 end
 
@@ -26,7 +27,7 @@ end
 
 def make_companies
   Company.create!(symbol: "LCY", name: "Legacy Iron Ore")
-  99.times do
+  20.times do
     symbol = (0...3).map{65.+(rand(26)).chr}.join
     name = Faker::Name.last_name
     Company.create!(symbol: symbol,
@@ -44,3 +45,11 @@ def make_relationships
 end
 
 
+def make_company_relationships
+  users = User.all
+  user = users.first
+  cfollowed_companies       = users[1..10]
+  cfollowers                = users[2..10]
+  cfollowed_companies.each { |cfollowed| user.cfollow!(cfollowed) }
+  cfollowers.each          { |cfollower| cfollower.cfollow!(user)  }
+end

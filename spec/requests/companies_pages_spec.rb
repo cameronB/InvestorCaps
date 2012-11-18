@@ -11,6 +11,74 @@ describe "Company pages" do
 
     it { should have_selector('h1',    text: company.name) }
     it { should have_selector('title', text: company.symbol) }
+
+    describe "follow/unfollow buttons" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+
+      describe "following a company" do
+        before { visit company_path(company) }
+
+        it "should increment the companies followed by count" do
+          expect do
+            click_button "Follow"
+          end.to change(user.cfollowed_companies, :count).by(1)
+        end
+
+        it "should increment the users following company count" do
+          expect do
+            click_button "Follow"
+          end.to change(company.cfollowers, :count).by(1)
+        end
+
+        describe "toggling the follow/unfollow button" do
+          before { click_button "Follow" }
+          it { should have_selector('input', value: 'Unfollow') }
+        end
+      end
+
+      describe "unfollowing a company" do
+        before do
+          user.cfollow!(company)
+          visit company_path(company)
+        end
+
+      it "should decrement the compannies followed by count" do
+        expect do
+          click_button "Unfollow"
+         end.to change(user.cfollowed_companies, :count).by(-1)
+      end
+
+      it "should decrement the user's following company count" do
+          expect do
+            click_button "Unfollow"
+        end.to change(company.cfollowers, :count).by(-1)
+      end
+
+      describe "toggling the follow/unfollow button" do
+          before { click_button "Unfollow" }
+          it { should have_selector('input', value: 'Follow') }
+        end
+      end
+    end
+  end
+
+  describe "Check Company followed by a user" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:other_company) { FactoryGirl.create(:company) }
+    before { user.cfollow!(other_company) }
+
+    describe "Companies followers" do
+      before do
+        sign_in user
+        visit cfollowers_company_path(other_company)
+      end
+
+      it { should have_selector('title', text: full_title('Followers')) }
+      it { should have_selector('h3', text: 'Followers') }
+      it { should have_link(user.name, href: user_path(user)) }
+
+    end
   end
 
   describe "Companies Page" do

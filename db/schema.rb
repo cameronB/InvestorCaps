@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121107110720) do
+ActiveRecord::Schema.define(:version => 20121117001741) do
 
   create_table "companies", :force => true do |t|
     t.string   "symbol"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(:version => 20121107110720) do
   end
 
   add_index "companies", ["symbol"], :name => "index_companies_on_symbol", :unique => true
+
+  create_table "company_relationships", :force => true do |t|
+    t.integer  "cfollower_id"
+    t.integer  "cfollowed_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "company_relationships", ["cfollowed_id"], :name => "index_company_relationships_on_cfollowed_id"
+  add_index "company_relationships", ["cfollower_id", "cfollowed_id"], :name => "index_company_relationships_on_cfollower_id_and_cfollowed_id", :unique => true
+  add_index "company_relationships", ["cfollower_id"], :name => "index_company_relationships_on_cfollower_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
