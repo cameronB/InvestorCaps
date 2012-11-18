@@ -13,7 +13,7 @@ describe "User pages" do
       visit users_path
     end
 
-    it { should have_selector('title', text: 'All users') }
+    it { should have_selector('title', text: 'Users') }
 
     describe "pagination" do
 

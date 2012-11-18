@@ -27,7 +27,7 @@ end
 
 def make_companies
   Company.create!(symbol: "LCY", name: "Legacy Iron Ore")
-  20.times do
+  99.times do
     symbol = (0...3).map{65.+(rand(26)).chr}.join
     name = Faker::Name.last_name
     Company.create!(symbol: symbol,
