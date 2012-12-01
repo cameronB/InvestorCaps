@@ -33,6 +33,7 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:posts) }
 
+  it { should respond_to(:feed) }
   it { should respond_to(:relationships) }
   it { should respond_to(:company_relationships) }
   it { should respond_to(:reverse_relationships) }
@@ -56,19 +57,30 @@ describe User do
       FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
     end
 
-    it "should have the right posts in the right order" do
-      @user.posts.should == [newer_post, older_post]
-    end
-
-   describe "status" do
+    describe "status" do
       let(:unfollowed_post) do
         FactoryGirl.create(:post, user: FactoryGirl.create(:user))
+      end
+      let(:followed_user) { FactoryGirl.create(:user) }
+
+      before do
+        @user.follow!(followed_user)
+        3.times { followed_user.posts.create!(title: "Google") }
+      end
+
+      it "should have the right posts in the right order" do
+         @user.posts.should == [newer_post, older_post]
       end
 
       its(:feed) { should include(newer_post) }
       its(:feed) { should include(older_post) }
       its(:feed) { should_not include(unfollowed_post) }
-  end
+      its(:feed) do
+        followed_user.posts.each do |post|
+          should include(post)
+        end
+      end
+    end
 
   it "should destroy associated posts" do
     posts = @user.posts.dup
