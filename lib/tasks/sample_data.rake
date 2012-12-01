@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     make_users
     make_companies
+    #make_posts
     make_relationships
     make_company_relationships
   end
@@ -25,9 +26,18 @@ def make_users
   end
 end
 
+def make_posts
+  users = User.all(limit: 6)
+  50.times do
+    url = "http://www.placeholder.com"
+    title = Faker::Lorem.sentence(6)
+    users.each { |user| user.posts.create!(url: url, title: title) }
+  end
+end
+
 def make_companies
   Company.create!(symbol: "LCY", name: "Legacy Iron Ore")
-  99.times do
+  10.times do
     symbol = (0...3).map{65.+(rand(26)).chr}.join
     name = Faker::Name.last_name
     Company.create!(symbol: symbol,

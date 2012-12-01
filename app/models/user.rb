@@ -15,6 +15,7 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
+  has_many :posts, dependent: :destroy
 
   #users can follow users / users are followed by users
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -38,6 +39,11 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    Post.where("user_id = ?", id)
+  end
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)

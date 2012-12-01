@@ -10,10 +10,16 @@ FactoryGirl.define do
     end
   end
 
+  factory :post do
+      url "http://www.google.com"
+      title "Google"
+      user
+    end
+  end
+
   FactoryGirl.define do
     factory :company do
       symbol  "Lcy"
       name    "Legacy Iron Ore"
-   end
+    end
   end
-end

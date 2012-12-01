@@ -14,22 +14,22 @@ describe "Static pages" do
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
+        FactoryGirl.create(:post, user: user, url: "http://www.google.com", title: "Google")
+        FactoryGirl.create(:post, user: user, url: "http://www.yahoo.com", title: "Yahoo")
         sign_in user
         visit root_path
       end
 
-      describe "follower/following counts" do
-        let(:other_user) { FactoryGirl.create(:user) }
-        before do
-          other_user.follow!(user)
-          visit root_path
-        end
 
-        it { should have_link("Following 0 Shareholders", href: following_user_path(user)) }
-        it { should have_link("Followed By 1 Shareholders", href: followers_user_path(user)) }
+      it { should have_selector('h3', text: 'Post Feed') }
+
+      it "should render the user's feed" do
+        user.feed.each do |item|
+          page.should have_selector("li##{item.id}", text: item.title)
+        end
       end
     end
-  end
+   end
 
   describe "Help page" do
     before { visit help_path }

@@ -77,7 +77,16 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:post1) { FactoryGirl.create(:post, user: user, url: "http://www.google.com", title: "Google") }
+    let!(:post2) { FactoryGirl.create(:post, user: user, url: "http://www.yahoo.com", title: "Yahoo") }
+
     before { visit user_path(user) }
+
+    describe "posts" do
+      it { should have_content(post1.title) }
+      it { should have_content(post2.title) }
+      it { should have_content(user.posts.count) }
+    end
 
     describe "follow/unfollow buttons" do
       let(:other_user) { FactoryGirl.create(:user) }
