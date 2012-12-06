@@ -1,10 +1,11 @@
 class Post < ActiveRecord::Base
-  attr_accessible :url, :title
+  attr_accessible :symbol, :title, :content
   belongs_to :user
 
   validates :user_id, presence: true
-  #validates :url, presence: true, length: { maximum: 140 }
-  validates :title, presence: true, length: { maximum: 150 }
+  validates :symbol, presence: true, length: { maximum: 3 }
+  validates :title, presence: true, length: { maximum: 60 }
+  validates :content, presence: true, length: { maximum: 500 }
   
   default_scope order: 'posts.created_at DESC'
 

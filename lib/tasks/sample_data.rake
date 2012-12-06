@@ -4,8 +4,8 @@ namespace :db do
     make_users
     make_companies
     #make_posts
-    make_relationships
-    make_company_relationships
+    #make_relationships
+    #make_company_relationships
   end
 end
 

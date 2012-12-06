@@ -35,10 +35,11 @@ ActiveRecord::Schema.define(:version => 20121126100539) do
 
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
-    t.string   "url"
+    t.string   "symbol"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "title"
+    t.string   "content"
   end
 
   create_table "relationships", :force => true do |t|
