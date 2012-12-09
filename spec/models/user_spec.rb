@@ -17,17 +17,15 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+    @user = User.new(username: "Example User", email: "user@example.com", password: "foobar")
   end
 
   subject { @user }
 
-  it { should respond_to(:name) }
+  it { should respond_to(:username) }
   it { should respond_to(:email) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
-  it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
@@ -51,10 +49,10 @@ describe User do
 
     before { @user.save }
     let!(:older_post) do
-      FactoryGirl.create(:post, user: @user, created_at: 1.day.ago)
+      FactoryGirl.create(:post, user: @user, symbol: "LCY", title: "Annoucment out", content: "Woot", created_at: 1.day.ago)
     end
     let!(:newer_post) do
-      FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
+      FactoryGirl.create(:post, user: @user, symbol: "HAW", title: "Annoucment out", content: "Woot", created_at: 1.hour.ago)
     end
 
     describe "status" do
@@ -65,7 +63,7 @@ describe User do
 
       before do
         @user.follow!(followed_user)
-        3.times { followed_user.posts.create!(title: "Google") }
+        3.times { followed_user.posts.create!(symbol: "LCY", title: "Annoucment out", content: "Woot") }
       end
 
       it "should have the right posts in the right order" do
@@ -109,8 +107,8 @@ describe User do
     it { should be_admin }
   end
 
-  describe "when name is not present" do
-    before { @user.name = " " }
+  describe "when username is not present" do
+    before { @user.username = " " }
     it { should_not be_valid }
   end
 
@@ -119,8 +117,8 @@ describe User do
     it { should_not be_valid }
   end
 
-  describe "when name is too long" do
-    before { @user.name = "a" * 51 }
+  describe "when username is too long" do
+    before { @user.username = "a" * 51 }
     it { should_not be_valid }
   end
 
@@ -162,26 +160,6 @@ describe User do
       @user.save
       @user.reload.email.should == mixed_case_email.downcase
     end
-  end
-
-  describe "when password is not present" do
-    before { @user.password = @user.password_confirmation = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when password doesn't match confirmation" do
-    before { @user.password_confirmation = "mismatch" }
-    it { should_not be_valid }
-  end
-
-  describe "when password confirmation is nil" do
-    before { @user.password_confirmation = nil }
-    it { should_not be_valid }
-  end
-
-  describe "with a password that's too short" do
-    before { @user.password = @user.password_confirmation = "a" * 5 }
-    it { should be_invalid }
   end
 
   describe "return value of authenticate method" do

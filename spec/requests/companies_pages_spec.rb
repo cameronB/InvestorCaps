@@ -76,7 +76,7 @@ describe "Company pages" do
 
       it { should have_selector('title', text: full_title('Followers')) }
       it { should have_selector('h3', text: 'Followers') }
-      it { should have_link(user.name, href: user_path(user)) }
+      it { should have_link(user.username, href: user_path(user)) }
 
     end
   end
@@ -86,7 +86,7 @@ describe "Company pages" do
     describe "index" do
       before do
         sign_in FactoryGirl.create(:user)
-        FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
+        FactoryGirl.create(:user, username: "Bob", email: "bob@example.com")
         visit companies_path
       end
 

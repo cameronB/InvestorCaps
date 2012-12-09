@@ -7,9 +7,9 @@ describe "User pages" do
   describe "index" do
 
     before do
-      sign_in FactoryGirl.create(:user)
-      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
-      FactoryGirl.create(:user, name: "Ben", email: "ben@example.com")
+     sign_in FactoryGirl.create(:user)
+      FactoryGirl.create(:user, username: "Bob", email: "bob@example.com")
+      FactoryGirl.create(:user, username: "Ben", email: "ben@example.com")
       visit users_path
     end
 
@@ -28,19 +28,19 @@ describe "User pages" do
 
       it "should list each user" do
         User.all[0..2].each do |user|
-          page.should have_selector('li', text: user.name)
+          page.should have_selector('li', text: user.username)
         end
       end
 
       it "should list the first page of users" do
         first_page.each do |user|
-          page.should have_selector('li', text: user.name)
+          page.should have_selector('li', text: user.username)
         end
       end
 
       it "should not list the second page of users" do
         second_page.each do |user|
-          page.should_not have_selector('li', text: user.name)
+          page.should_not have_selector('li', text: user.username)
         end
       end
 
@@ -49,7 +49,7 @@ describe "User pages" do
 
         it "should list the second page of users" do
           second_page.each do |user|
-            page.should have_selector('li', text: user.name)
+            page.should have_selector('li', text: user.username)
           end
         end
       end
@@ -77,8 +77,8 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:post1) { FactoryGirl.create(:post, user: user, url: "http://www.google.com", title: "Google") }
-    let!(:post2) { FactoryGirl.create(:post, user: user, url: "http://www.yahoo.com", title: "Yahoo") }
+    let!(:post1) { FactoryGirl.create(:post, user: user, symbol: "LCY", title: "Great new annoucment", content: "Buyout yay!") }
+    let!(:post2) { FactoryGirl.create(:post, user: user, symbol: "HAW", title: "Bad new annoucment", content: "OMG no a buyout") }
 
     before { visit user_path(user) }
 
@@ -167,10 +167,9 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Name", with: "Example User"
+        fill_in "Username", with: "Example"
         fill_in "Email", with: "user@example.com"
         fill_in "Password", with: "foobar"
-        fill_in "Confirmation", with: "foobar"
       end
 
       it "should create a user" do
@@ -182,7 +181,7 @@ describe "User pages" do
 
         let(:user) { User.find_by_email('user@example.com') }
 
-        it { should have_selector('title', text: user.name) }
+        it { should have_selector('title', text: user.username) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link('Sign out') }
       end
@@ -220,7 +219,7 @@ describe "User pages" do
 
       it { should have_selector('title', text: full_title('Following')) }
       it { should have_selector('h3', text: 'Following') }
-      it { should have_link(other_user.name, href: user_path(other_user)) }
+      it { should have_link(other_user.username, href: user_path(other_user)) }
     end
 
     describe "followers" do
@@ -231,7 +230,7 @@ describe "User pages" do
 
       it { should have_selector('title', text: full_title('Followers')) }
       it { should have_selector('h3', text: 'Followers') }
-      it { should have_link(user.name, href: user_path(user)) }
+      it { should have_link(user.username, href: user_path(user)) }
     end
   end
 end

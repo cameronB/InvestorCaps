@@ -3,12 +3,13 @@ require 'spec_helper'
 describe Post do
 
   let(:user) { FactoryGirl.create(:user) }
-  before { @post = user.posts.build(url: "http://www.google.com", title: "Google") }
+  before { @post = user.posts.build(symbol: "LCY", title: "Annoucment out!", content: "woot annoucment out guys!") }
 
   subject { @post }
 
-  it { should respond_to(:url) }
+  it { should respond_to(:symbol) }
   it { should respond_to(:title) }
+  it { should respond_to(:content) }
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   its(:user) { should == user }

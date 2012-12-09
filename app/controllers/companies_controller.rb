@@ -3,7 +3,7 @@ class CompaniesController < ApplicationController
   before_filter :admin_user,     only: :destroy
 
   def show
-    @company = Company.find(params[:id])
+    @company = Company.find_by_symbol(params[:id])
   end
 
   def index
@@ -11,14 +11,14 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    Company.find(params[:id]).destroy
+    Company.find_by_symbol(params[:id]).destroy
     flash[:success] = "Company destroyed."
     redirect_to companies_path
   end
 
   def cfollowers
     @title = "Followers"
-    @company = Company.find(params[:id])
+    @company = Company.find_by_symbol(params[:id])
     @companies = @company.cfollowers.paginate(page: params[:page])
     render 'show_follow_companies'
   end

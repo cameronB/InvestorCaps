@@ -22,4 +22,8 @@ class Company < ActiveRecord::Base
            dependent:   :destroy
   has_many :cfollowers, through: :creverse_relationships, source: :cfollower
 
+  def to_param
+    symbol
+  end
+
 end

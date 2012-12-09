@@ -7,15 +7,14 @@ describe "Static pages" do
   describe "Home page" do
     before { visit root_path }
 
-    it { should have_selector('h1', text: 'InvestorCaps') }
     it { should have_selector('title', text: full_title('')) }
     it { should have_selector('title', text: ' | Home')}
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:post, user: user, url: "http://www.google.com", title: "Google")
-        FactoryGirl.create(:post, user: user, url: "http://www.yahoo.com", title: "Yahoo")
+      FactoryGirl.create(:post, user: user, symbol: "LCY", title: "Great new annoucment", content: "Buyout yay!") 
+      FactoryGirl.create(:post, user: user, symbol: "HAW", title: "Bad new annoucment", content: "OMG no a buyout")
         sign_in user
         visit root_path
       end
@@ -58,10 +57,5 @@ describe "Static pages" do
     page.should have_selector 'title', text: full_title('About Us')
     click_link "Contact"
     page.should have_selector 'title', text: full_title('Contact')
-    click_link "Home"
-    click_link "Shareholder Registration"
-    page.should have_selector 'title', text: full_title('Register')
-    click_link "InvestorCaps"
-    page.should have_selector 'h1', text: 'InvestorCaps'
   end
 end
