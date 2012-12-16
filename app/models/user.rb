@@ -15,7 +15,6 @@
 class User < ActiveRecord::Base
   attr_accessible :username, :email, :password
   has_secure_password
-  has_many :posts, dependent: :destroy
 
   #users can follow users / users are followed by users
   has_many :posts, dependent: :destroy

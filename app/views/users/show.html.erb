@@ -3,6 +3,7 @@
   <aside class="span4">
     <section>
       <h1>
+        <%= render 'follow_form' if signed_in? %>
         <%= gravatar_for @user %>
         <%= @user.username %>
       </h1>
@@ -12,7 +13,6 @@
     </section>
   </aside>
   <div class="span8">
-    <%= render 'follow_form' if signed_in? %>
     <% if @user.posts.any? %>
       <h3>Posts (<%= @user.posts.count %>)</h3>
       <ol class="posts">
