@@ -18,6 +18,9 @@ class Post < ActiveRecord::Base
                       INNER JOIN posts ON companies.symbol = posts.symbol
                       WHERE (users.id IN (SELECT cfollower_id from company_relationships
                       WHERE cfollower_id = :user_id) OR users.id = :user_id)
+                      OR (user_id IN (SELECT followed_id FROM relationships
+                      WHERE follower_id = :user_id) OR user_id = :user_id)
+                      GROUP BY posts.id
                       ORDER BY posts.created_at DESC")
   end
 end
