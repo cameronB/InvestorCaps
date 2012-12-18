@@ -2,15 +2,15 @@
 <div class="row">
   <aside class="span4">
     <section>
+      <%= render 'follow_form' if signed_in? %>
+        <%= gravatar_for @user, size: 52 %>
       <h1>
-        <%= render 'follow_form' if signed_in? %>
-        <%= gravatar_for @user %>
         <%= @user.username %>
       </h1>
+      <span><%= link_to "view my feed", root_url %></span>
       <span><%= pluralize(current_user.posts.count, "post") %></span>
     </section>
     <section>
-      <%= render 'shared/stats' %>
     </section>
   </aside>
   <div class="span8">
