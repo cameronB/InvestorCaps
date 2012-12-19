@@ -8,14 +8,13 @@
         <%= @user.username %>
       </h1>
       <span><%= link_to "view my feed", root_url %></span>
-      <span><%= pluralize(current_user.posts.count, "post") %></span>
     </section>
     <section>
     </section>
   </aside>
   <div class="span8">
     <% if @user.posts.any? %>
-      <h3>Posts</h3>
+      <h3>My Posts</h3>
       <ol class="posts">
         <%= render @posts %>
       </ol>

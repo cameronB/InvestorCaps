@@ -8,19 +8,22 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 60 }
   validates :content, presence: true, length: { maximum: 500 }
   
+  before_save :uppercase_symbol
+
   default_scope order: 'posts.created_at DESC'
 
   def self.from_users_followed_by(user)
-    Post.find_by_sql("SELECT *
-                      FROM users
-                      INNER JOIN company_relationships ON users.id=company_relationships.cfollower_id
-                      INNER JOIN companies ON company_relationships.cfollowed_id=companies.id
-                      INNER JOIN posts ON companies.symbol = posts.symbol
-                      WHERE (users.id IN (SELECT cfollower_id from company_relationships
-                      WHERE cfollower_id = :user_id) OR users.id = :user_id)
-                      OR (user_id IN (SELECT followed_id FROM relationships
-                      WHERE follower_id = :user_id) OR user_id = :user_id)
-                      GROUP BY posts.id
-                      ORDER BY posts.created_at DESC")
+    Post.find_by_sql("SELECT 'posts'.* 
+                        FROM 'posts'
+                        INNER JOIN companies on posts.symbol = companies.symbol
+                        WHERE (user_id IN (SELECT followed_id FROM relationships WHERE follower_id = :user_id)) 
+                        OR (companies.id IN (SELECT cfollowed_id from company_relationships WHERE cfollower_id = :user_id))
+                        OR user_id = :user_id
+                        ORDER BY posts.created_at DESC")
   end
+
+  def uppercase_symbol
+    self.symbol.upcase!
+  end
+
 end
