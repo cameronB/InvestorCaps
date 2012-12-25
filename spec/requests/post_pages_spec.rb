@@ -4,11 +4,26 @@ describe "Post pages" do
 
   subject { page }
 
+  before do
+    FactoryGirl.create(:company, symbol: "RIO", name: "Rio Tinto")
+  end
+
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }
 
   describe "post creation" do
     before { visit root_path }
+
+    describe "with valid information" do
+
+      before { fill_in 'post_symbol', with: "RIO" }
+      before { fill_in 'post_title', with: "Annoucment out!" }
+      before { fill_in 'post_content', with: "Wow great annoucment out" }
+      it "should create a post" do
+        expect { click_button "Post" }.to change(Post, :count).by(1)
+      end
+    end
+  end
 
     describe "with invalid information" do
 
@@ -21,27 +36,4 @@ describe "Post pages" do
         it { should have_content('error') } 
       end
     end
-
-    describe "post destruction" do
-    before { FactoryGirl.create(:post, user: user) }
-
-    describe "as correct user" do
-      before { visit root_path }
-
-      it "should delete a micropost" do
-        expect { click_link "delete" }.to change(Post, :count).by(-1)
-      end
-    end
-  end
-
-    describe "with valid information" do
-
-      before { fill_in 'post_symbol', with: "LCY" }
-      before { fill_in 'post_title', with: "Annoucment out!" }
-      before { fill_in 'post_content', with: "Wow great annoucment out" }
-      it "should create a post" do
-        expect { click_button "Post" }.to change(Post, :count).by(1)
-      end
-    end
-  end
 end

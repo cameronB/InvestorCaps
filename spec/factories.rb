@@ -6,20 +6,18 @@ FactoryGirl.define do
 
     factory :admin do
       admin true
-    end
+    end 
   end
 
   factory :post do
       symbol "LCY"
-      title "Annoucement out guys!"
-      content "Check it out guys, LCY bought out Mount Bevan from Hawthorn Resources!"
+      title "Annoucement out!"
+      content "Annoucement out!"
       user
     end
-  end
 
-  FactoryGirl.define do
     factory :company do
-      symbol  "Lcy"
+      symbol  "LCY"
       name    "Legacy Iron Ore"
     end
-  end
+end

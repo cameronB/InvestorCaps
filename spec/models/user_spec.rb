@@ -49,45 +49,24 @@ describe User do
 
     before { @user.save }
     let!(:older_post) do
-      FactoryGirl.create(:post, user: @user, symbol: "LCY", title: "Annoucment out", content: "Woot", created_at: 1.day.ago)
+      FactoryGirl.create(:post, user: @user, created_at: 1.day.ago)
     end
     let!(:newer_post) do
-      FactoryGirl.create(:post, user: @user, symbol: "HAW", title: "Annoucment out", content: "Woot", created_at: 1.hour.ago)
+      FactoryGirl.create(:post, user: @user, created_at: 1.hour.ago)
     end
 
-    describe "status" do
-      let(:unfollowed_post) do
-        FactoryGirl.create(:post, user: FactoryGirl.create(:user))
-      end
-      let(:followed_user) { FactoryGirl.create(:user) }
-
-      before do
-        @user.follow!(followed_user)
-        3.times { followed_user.posts.create!(symbol: "LCY", title: "Annoucment out", content: "Woot") }
-      end
-
-      it "should have the right posts in the right order" do
-         @user.posts.should == [newer_post, older_post]
-      end
-
-      its(:feed) { should include(newer_post) }
-      its(:feed) { should include(older_post) }
-      its(:feed) { should_not include(unfollowed_post) }
-      its(:feed) do
-        followed_user.posts.each do |post|
-          should include(post)
-        end
+    it "should have the right posts in the right order" do
+      @user.posts.should == [newer_post, older_post]
+    end
+  
+    it "should destroy associated posts" do
+      posts = @user.posts.dup
+      @user.destroy
+      posts.should_not be_empty
+      posts.each do |post|
+        Post.find_by_id(post.id).should be_nil
       end
     end
-
-  it "should destroy associated posts" do
-    posts = @user.posts.dup
-    @user.destroy
-    posts.should_not be_empty
-    posts.each do |post|
-      Post.find_by_id(post.id).should be_nil
-    end
-  end
   end
 
   describe "accessible attributes" do

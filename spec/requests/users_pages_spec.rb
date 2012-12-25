@@ -85,7 +85,6 @@ describe "User pages" do
     describe "posts" do
       it { should have_content(post1.title) }
       it { should have_content(post2.title) }
-      it { should have_content(user.posts.count) }
     end
     
     describe "follow/unfollow buttons" do

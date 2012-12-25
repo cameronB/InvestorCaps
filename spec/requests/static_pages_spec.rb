@@ -5,6 +5,10 @@ describe "Static pages" do
   subject { page }
 
   describe "Home page" do
+    before do
+      FactoryGirl.create(:company, symbol: "BCI", name: "BC Iron Ore")
+    end
+
     before { visit root_path }
 
     it { should have_selector('title', text: full_title('')) }
@@ -12,23 +16,25 @@ describe "Static pages" do
 
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
-      before do
-      FactoryGirl.create(:post, user: user, symbol: "LCY", title: "Great new annoucment", content: "Buyout yay!") 
-      FactoryGirl.create(:post, user: user, symbol: "HAW", title: "Bad new annoucment", content: "OMG no a buyout")
-        sign_in user
-        visit root_path
+      
+      before { sign_in user }
+      before { visit root_path }
+      
+      before { fill_in 'post_symbol', with: "BCI" }
+      before { fill_in 'post_title', with: "Annoucment out!" }
+      before { fill_in 'post_content', with: "Annoucment out!" }
+      
+      it "should create a post" do
+        expect { click_button "Post" }.to change(Post, :count).by(1)
       end
-
-
-      it { should have_selector('h3', text: 'Post Feed') }
 
       it "should render the user's feed" do
         user.feed.each do |item|
           page.should have_selector("li##{item.id}", text: item.title)
-        end
       end
     end
-   end
+  end
+end
 
   describe "Help page" do
     before { visit help_path }

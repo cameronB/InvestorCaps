@@ -6,16 +6,31 @@ class PostsController < ApplicationController
 
 	end
 
-	def create
-     @post = current_user.posts.build(params[:post])
-     if @post.save
-      flash[:success] = "Post created!"
-      redirect_to root_url
-     else
-      @feed_items = []
-      render 'static_pages/home'
-     end
+  def create
+   #check if the symbol that the user wishes to post about exists in the companies database table
+   @symbol_count = Post.count_by_sql(["SELECT COUNT(*)
+                                        FROM Companies
+                                        WHERE symbol = ?", params[:post][:symbol]])
+
+    #build the post using the parameters
+    @post = current_user.posts.build(params[:post])
+    
+    #if the post paramters are valid and the company does exist    
+    if @post.valid? == true && @symbol_count > 0
+        @post.save
+        flash[:success] = "Post created!"
+        redirect_to root_url
+    #if the post paramters are valid but the company does not exist    
+    elsif @post.valid? == true && @symbol_count < 1
+        flash[:failed] = "Company does not exist!"
+        redirect_to root_url
+    #if the post paramters are not valid attempt to save, will render errors
+    elsif @post.valid? == false
+        @feed_items = []
+        @post.save
+        render 'static_pages/home'
     end
+  end
 
 	def destroy
      @post.destroy

@@ -17,7 +17,9 @@ class CompaniesController < ApplicationController
   end
 
   def destroy
-    Company.find_by_symbol(params[:id]).destroy
+    @company = Company.find_by_symbol(params[:id])
+    @company_symbol = @company.symbol
+    Company.find_by_sql(["DELETE FROM Companies WHERE symbol = ?", @company_symbol])
     flash[:success] = "Company destroyed."
     redirect_to companies_path
   end
