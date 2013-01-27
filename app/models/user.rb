@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password
   has_secure_password
 
+  has_many :comments
+
   #users can follow users / users are followed by users
   has_many :posts, dependent: :destroy
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy

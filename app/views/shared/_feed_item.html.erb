@@ -4,6 +4,7 @@
     <%= link_to feed_item.user.username, user_path(feed_item.user) %>
   </span>
   <span class="title"><%= feed_item.title %></span>
+   <%= link_to "comments", post_path(feed_item.id) %></span>
    <%= link_to feed_item.symbol, company_path(feed_item.symbol) %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.

@@ -14,17 +14,16 @@ class PostsController < ApplicationController
 
     #build the post using the parameters
     @post = current_user.posts.build(params[:post])
-    
-    #if the post paramters are valid and the company does exist    
+    #if the post paramters are valid and the company does exist then create post    
     if @post.valid? == true && @symbol_count > 0
         @post.save
         flash[:success] = "Post created!"
         redirect_to root_url
-    #if the post paramters are valid but the company does not exist    
+    #if the post paramters are valid but the company does not exist then do not create a post   
     elsif @post.valid? == true && @symbol_count < 1
         flash[:failed] = "Company does not exist!"
         redirect_to root_url
-    #if the post paramters are not valid attempt to save, will render errors
+    #if the post paramters are not valid render errors for incorrect paramters
     elsif @post.valid? == false
         @feed_items = []
         @post.save
