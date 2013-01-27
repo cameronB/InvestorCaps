@@ -16,6 +16,7 @@ InvestorCaps::Application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :company_relationships, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
+  resources :comments
 
   #home
   root to: 'static_pages#home'

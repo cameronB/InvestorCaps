@@ -1,0 +1,6 @@
+<% if @post.comments.any? %>
+ <h3>Comments</h3>
+  <ol class="posts">
+     <%= render partial: 'shared/comment_item' %>
+</ol>
+<% end %>
