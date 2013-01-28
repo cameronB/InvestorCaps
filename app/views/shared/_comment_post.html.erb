@@ -1,0 +1,11 @@
+<li id="">
+  <%= link_to gravatar_for(@post.user), @post.user %>
+  <span class="user">
+    <%= link_to @post.user.username, user_path(@post.user) %>
+  </span>
+  <span class="title"><%= @post.title %></span>
+   <%= link_to @post.symbol, company_path(@post.symbol) %>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(@post.created_at) %> ago.
+  </span>
+</li>

@@ -1,6 +1,12 @@
-<% if @post.comments.any? %>
- <h3>Comments</h3>
+<h3>Post</h3>
   <ol class="posts">
-     <%= render partial: 'shared/comment_item' %>
+    <%= render partial: 'shared/comment_post' %>
+  </ol>
+
+<% if @comment_items.any? %>
+<h3>Comments</h3>
+  <ol class="posts">
+     <%= render partial: 'shared/comment_item', collection: @comment_items %>
 </ol>
+<%= will_paginate @comment_items %>
 <% end %>

@@ -10,10 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id])
-    @posts = @user.posts.paginate_by_sql(['SELECT *
-                                            FROM posts
-                                            INNER JOIN users on posts.user_id=users.id
-                                            WHERE posts.user_id = ?', @user], :page => @page)
+    @posts = @user.posts.paginate(page: params[:page])
   end
 
   def new

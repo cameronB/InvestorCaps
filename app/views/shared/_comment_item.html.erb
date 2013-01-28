@@ -1,14 +1,12 @@
-<li id="">
-  <% @post.comments.each do |comment| %>
+<li id="<%= comment_item.id %>">
   <span class="user">
-    <%= link_to gravatar_for(comment.user), comment.user %>
-    <%= comment.user.username %>
+    <%= link_to gravatar_for(comment_item.user), comment_item.user %>
+    <%= link_to comment_item.user.username, user_path(comment_item.user) %>
   </span>
   <span class="title">
-    <p><%= comment.message %></p>
+      <%= comment_item.message %>
   </span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(comment.created_at) %> ago.
+    Posted <%= time_ago_in_words(comment_item.created_at) %> ago.
   </span>
-  <% end %>
 </li>

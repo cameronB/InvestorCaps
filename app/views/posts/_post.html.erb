@@ -1,6 +1,6 @@
-<li>
+<li id="<%= post.id %>">
   <%= link_to gravatar_for(post.user), post.user %>
-  <span class="user"><%= link_to post.username, user_path(post.username) %></span>
+<span class="user"><%= link_to post.user.username, user_path(post.user.username) %></span>
 <span class="title"><%= link_to post.title, comment_path(post.id) %></span>
   <%= link_to post.symbol, company_path(post.symbol) %>
   <span class="timestamp">
