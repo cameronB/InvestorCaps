@@ -9,6 +9,9 @@
       </h1>
       <span><%= link_to "view my feed", root_url %></span>
     </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
   </aside>
   <div class="span8">
     <% if @user.posts.any? %>

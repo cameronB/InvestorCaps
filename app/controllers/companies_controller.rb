@@ -4,7 +4,12 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find_by_symbol(params[:id])
-    @posts = @company.posts.paginate(page: params[:page])
+    @company_symbol = @company.symbol
+    @posts = @company.posts.paginate_by_sql(["SELECT posts.* 
+                                              From posts 
+                                              INNER JOIN companies ON posts.symbol=companies.symbol
+                                              INNER JOIN users ON posts.user_id=users.id
+                                              Where posts.symbol = ?", @company_symbol], :page => @page)
   end
 
   def index
