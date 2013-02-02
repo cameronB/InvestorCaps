@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  symbol     :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  title      :string(255)
+#  content    :string(255)
+#
+
 class Post < ActiveRecord::Base
   attr_accessible :symbol, :title, :content
   has_many :comments

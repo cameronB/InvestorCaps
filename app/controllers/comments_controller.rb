@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController 
-	before_filter :redirect_back_unless_logged_in
+	before_filter :signed_in_user, only: [:create, :destroy]
+	before_filter :correct_user, only: :destroy
 
 	def show
 		@post = Post.find(params[:id])
@@ -16,8 +17,17 @@ class CommentsController < ApplicationController
 		redirect_to :back
 	end
 
-	def redirect_back_unless_logged_in
-    	redirect_to :back unless current_user.present?
-  	end
+	def destroy
+     	@comment.destroy
+     	flash[:success] = "Comment Deleted."
+     	redirect_to :back
+	end
+
+	private
+
+    def correct_user
+      @comment = current_user.comments.find_by_id(params[:id])
+      redirect_to root_url if @comment.nil?
+    end
 
 end
