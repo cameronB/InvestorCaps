@@ -86,6 +86,11 @@ describe "User pages" do
       it { should have_content(post1.title) }
       it { should have_content(post2.title) }
     end
+
+     it "should have the correct title" do
+        click_link "Great new annoucment"
+        page.should have_selector 'title', text: full_title('Great new annoucment')
+    end
     
     describe "follow/unfollow buttons" do
       let(:other_user) { FactoryGirl.create(:user) }

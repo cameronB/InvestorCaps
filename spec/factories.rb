@@ -14,10 +14,15 @@ FactoryGirl.define do
       title "Annoucement out!"
       content "Annoucement out!"
       user
-    end
+  end
 
-    factory :company do
-      symbol  "LCY"
-      name    "Legacy Iron Ore"
-    end
+  factory :company do
+     symbol  "LCY"
+     name    "Legacy Iron Ore"
+  end
+
+  factory :comment do
+      message "Awesome Annoucement"
+  end
+
 end

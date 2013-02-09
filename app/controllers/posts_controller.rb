@@ -26,10 +26,10 @@ def create
     #if the post paramters are not valid render errors for incorrect paramters
     elsif @post.valid? == false
         @feed_items = []
-        @post.save
-        render 'static_pages/home'
+        #need to add render for errors
+        redirect_to :back
     end
-  end
+end
 
 def destroy
      @post.destroy

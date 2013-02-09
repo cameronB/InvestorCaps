@@ -14,7 +14,14 @@ class CommentsController < ApplicationController
 
 	def create
 		@comment = current_user.comments.create(params[:comment])
-		redirect_to :back
+		if @comment.save
+			flash[:success] = "Comment added"
+			redirect_to :back
+		else
+			@comment_items = []
+      #need to add render for errors
+      redirect_to :back
+		end
 	end
 
 	def destroy
