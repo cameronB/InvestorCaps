@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
 	end
 
-  #create a comment on a post
+  #create a comment on a posts
 	def create
 		@comment = current_user.comments.create(params[:comment])
 		if @comment.save
@@ -25,6 +25,7 @@ class CommentsController < ApplicationController
 		end
 	end
 
+  #destroy comment
 	def destroy
      	@comment.destroy
      	flash[:success] = "Comment Deleted."
