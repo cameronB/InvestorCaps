@@ -20,8 +20,8 @@ class CommentsController < ApplicationController
 			redirect_to :back
 		else
 			@comment_items = []
-      #need to add render for errors
-      redirect_to :back
+      		#need to add render for errors
+      		redirect_to :back
 		end
 	end
 

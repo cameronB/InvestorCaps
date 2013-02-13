@@ -14,3 +14,19 @@
                                      title: feed_item.title %>
   <% end %>
 </li>
+<span class="votes">
+Votes: <%= feed_item.votes.where(:up => true).count - feed_item.votes.where(:up => false).count %>
+
+<% if current_user && current_user.votes.where(:post_id => feed_item.id, :up => true).present? %>
+  *
+<% else %>
+  <%= link_to "+", votes_path(:vote => {:post_id => feed_item.id, :up => true}), :method => :post %>
+<% end %>
+
+<% if current_user && current_user.votes.where(:post_id => feed_item.id, :up => false).present? %>
+  *
+<% else %>
+  <%= link_to "-", votes_path(:vote => {:post_id => feed_item.id, :up => false}), :method => :post %>
+<% end %>
+
+</span>
