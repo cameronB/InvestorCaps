@@ -45,7 +45,8 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to InvestorCaps!"
       redirect_to @user
     else
-      render 'new'
+      flash[:error] = 'Invalid email/password combination'
+      redirect_to :back
     end
   end
 

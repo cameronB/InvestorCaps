@@ -19,8 +19,7 @@ class CommentsController < ApplicationController
 			flash[:success] = "Comment added"
 			redirect_to :back
 		else
-			@comment_items = []
-      		#need to add render for errors
+      		flash[:error] = 'Invalid Comment'
       		redirect_to :back
 		end
 	end

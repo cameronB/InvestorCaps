@@ -10,6 +10,7 @@ class VotesController < ApplicationController
     else
       @comment_items = []
       #need to add render for errors
+      flash[:error] = 'Vote not registered, please try again!'
       redirect_to :back
     end
   end

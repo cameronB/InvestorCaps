@@ -27,6 +27,7 @@ def create
     elsif @post.valid? == false
         @feed_items = []
         #need to add render for errors
+        flash[:error] = 'Invalid Post'
         redirect_to :back
     end
 end

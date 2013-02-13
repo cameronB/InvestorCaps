@@ -30,10 +30,5 @@ describe "Post pages" do
       it "should not create a post" do
         expect { click_button "Post" }.not_to change(Post, :count)
       end
-
-      describe "error messages" do
-        before { click_button "Post" }
-        it { should have_content('error') } 
-      end
     end
 end
