@@ -30,12 +30,10 @@ describe User do
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
   it { should respond_to(:posts) }
-
   it { should respond_to(:feed) }
-  it { should respond_to(:shareholder_relationships) }
   it { should respond_to(:company_relationships) }
-  it { should respond_to(:reverse_relationships) }
-
+  it { should respond_to(:shareholder_relationships) }
+  it { should respond_to(:shareholder_reverse_relationships) }
   it { should respond_to(:shareholder_followed_users) }
   it { should respond_to(:shareholder_followers) }
   it { should respond_to(:shareholder_following?) }
@@ -169,7 +167,7 @@ describe User do
       @user.shareholder_follow!(other_user)
     end
 
-    it { should be_following(other_user) }
+    it { should be_shareholder_following(other_user) }
     its(:shareholder_followed_users) { should include(other_user) }
 
     describe "followed user" do
@@ -180,7 +178,7 @@ describe User do
     describe "and unfollowing" do
       before { @user.shareholder_unfollow!(other_user) }
 
-      it { should_not be_following(other_user) }
+      it { should_not be_shareholder_following(other_user) }
       its(:shareholder_followed_users) { should_not include(other_user) }
     end
   end
