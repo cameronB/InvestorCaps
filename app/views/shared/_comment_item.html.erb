@@ -15,3 +15,19 @@
                                      message: comment_item.message %>
   <% end %>
 </li>
+<span class="votes">
+Votes: <%= comment_item.comment_votes.where(:up => true).count - comment_item.comment_votes.where(:up => false).count %>
+
+<% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => true).present? %>
+  *
+<% else %>
+  <%= link_to "+", comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => true}), :method => :comment %>
+<% end %>
+
+<% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => false).present? %>
+  *
+<% else %>
+  <%= link_to "-", comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => false}), :method => :comment %>
+<% end %>
+
+</span>

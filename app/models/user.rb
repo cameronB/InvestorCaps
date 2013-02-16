@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :votes
+  has_many :comment_votes
   has_many :comments
   has_many :posts, dependent: :destroy
 

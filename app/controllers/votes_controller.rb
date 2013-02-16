@@ -8,7 +8,6 @@ class VotesController < ApplicationController
     if @vote.save
       redirect_to :back
     else
-      @comment_items = []
       #need to add render for errors
       flash[:error] = 'Vote not registered, please try again!'
       redirect_to :back

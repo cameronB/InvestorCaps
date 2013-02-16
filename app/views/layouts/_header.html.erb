@@ -5,7 +5,6 @@
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
-              <li><%= link_to "Trading Floor", root_path %></li>
               <li><%= link_to "Companies", companies_path %></li>
               <li><%= link_to "Shareholders", users_path %></li>
               <li id="fat-menu" class="dropdown">
