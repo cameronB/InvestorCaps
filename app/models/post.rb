@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
   attr_accessible :symbol, :title, :content
   
   has_many :comments
-  has_many :votes
+  has_many :post_votes
   
   belongs_to :user
   belongs_to :company

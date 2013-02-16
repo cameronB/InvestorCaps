@@ -1,21 +1,21 @@
 <li id="<%= feed_item.id %>">
 <div class="post_votes">
     <div class="post_votecount">
-      <%= feed_item.votes.where(:up => true).count - feed_item.votes.where(:up => false).count %>
+      <%= feed_item.post_votes.where(:up => true).count - feed_item.post_votes.where(:up => false).count %>
     </div>
     <div id="post_vote_item">
     <div class="post_upvote">
-      <% if current_user && current_user.votes.where(:post_id => feed_item.id, :up => true).present? %>
-        <%= image_tag("uparrow_true.png", :border => 0) %>
-      <% else %>
-        <%= link_to image_tag("uparrow.png", :border => 0), votes_path(:vote => {:post_id => feed_item.id, :up => true}), :method => :post %>
+      <% if current_user && current_user.post_votes.where(:post_id => feed_item.id, :up => true).present? %>
+        <%= link_to image_tag("uparrow_true.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id}), :method => :post %>
+      <% else %> 
+        <%= link_to image_tag("uparrow.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id, :up => true}), :method => :post %>
       <% end %>
     </div>
     <div class="post_downvote">
-      <% if current_user && current_user.votes.where(:post_id => feed_item.id, :up => false).present? %>
-        <%= image_tag("downarrow_true.png", :border => 0) %>
+      <% if current_user && current_user.post_votes.where(:post_id => feed_item.id, :up => false).present? %>
+        <%= link_to image_tag("downarrow_true.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id}), :method => :post %>
       <% else %>
-        <%= link_to image_tag("downarrow.png", :border => 0), votes_path(:vote => {:post_id => feed_item.id, :up => false}), :method => :post %>
+        <%= link_to image_tag("downarrow.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id, :up => false}), :method => :post %>
       <% end %>
     </div>
   </div>

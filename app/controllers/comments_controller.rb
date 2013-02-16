@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController 
 	before_filter :signed_in_user, only: [:create, :destroy]
-	before_filter :correct_user, only: :destroy
+	before_filter :comment_exists, only: :destroy
 
 	def show
 		@post = Post.find(params[:id])
@@ -27,13 +27,12 @@ class CommentsController < ApplicationController
   #destroy comment
 	def destroy
      	@comment.destroy
-     	flash[:success] = "Comment Deleted."
      	redirect_to :back
 	end
 
 	private
 
-    def correct_user
+    def comment_exists
       @comment = Comment.find_by_id(params[:id])
       redirect_to root_url if @comment.nil?
     end

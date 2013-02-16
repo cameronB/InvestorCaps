@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
   add_index "company_relationships", ["cfollower_id", "cfollowed_id"], :name => "index_company_relationships_on_cfollower_id_and_cfollowed_id", :unique => true
   add_index "company_relationships", ["cfollower_id"], :name => "index_company_relationships_on_cfollower_id"
 
+  create_table "post_votes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "up"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "user_id"
     t.string   "symbol"

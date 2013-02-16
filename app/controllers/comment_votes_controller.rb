@@ -1,5 +1,6 @@
 class CommentVotesController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :comment_vote_exists, only: :destroy
 
   def create
     @comment_vote = current_user.comment_votes.where(:comment_id => params[:comment_vote][:comment_id]).first
@@ -13,5 +14,18 @@ class CommentVotesController < ApplicationController
       redirect_to :back
     end
   end
+
+  #destroy vote
+  def destroy
+      @comment_vote.destroy
+      redirect_to :back
+  end
+
+  private
+
+    def comment_vote_exists
+      @comment_vote = CommentVote.find_by_id(params[:id])
+      redirect_to root_url if @comment_vote.nil?
+    end
 
 end
