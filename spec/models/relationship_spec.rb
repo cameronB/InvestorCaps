@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: relationships
+# Table name: shareholder_relationships
 #
 #  id          :integer          not null, primary key
 #  follower_id :integer
@@ -11,38 +11,38 @@
 
 require 'spec_helper'
 
-describe Relationship do
+describe ShareholderRelationship do
 
-  let(:follower) { FactoryGirl.create(:user) }
-  let(:followed) { FactoryGirl.create(:user) }
-  let(:relationship) { follower.relationships.build(followed_id: followed.id) }
+  let(:shareholder_follower) { FactoryGirl.create(:user) }
+  let(:shareholder_followed) { FactoryGirl.create(:user) }
+  let(:shareholder_relationship) { follower.relationships.build(shareholder_followed_id: shareholder_followed.id) }
 
-  subject { relationship }
+  subject { shareholder_relationship }
 
   it { should be_valid }
 
   describe "accessible attributes" do
     it "should not allow access to follower_id" do
       expect do
-        Relationship.new(follower_id: follower.id)
+        ShareholderRelationship.new(shareholder_follower_id: shareholder_follower.id)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end
   end
 
   describe "follower methods" do
-    it { should respond_to(:follower) }
-    it { should respond_to(:followed) }
-    its(:follower) { should == follower }
-    its(:followed) { should == followed }
+    it { should respond_to(:shareholder_follower) }
+    it { should respond_to(:shareholder_followed) }
+    its(:shareholder_follower) { should == shareholder_follower }
+    its(:shareholder_followed) { should == shareholder_followed }
   end
 
   describe "when followed id is not present" do
-    before { relationship.followed_id = nil }
+    before { shareholder_relationship.shareholder_followed_id = nil }
     it { should_not be_valid }
   end
 
   describe "when follower id is not present" do
-    before { relationship.follower_id = nil }
+    before { shareholder_relationship.shareholder_follower_id = nil }
     it { should_not be_valid }
   end
 end

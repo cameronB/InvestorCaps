@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
         sql = ["SELECT 'posts'.* 
                   FROM 'posts'
                   INNER JOIN companies on posts.symbol = companies.symbol
-                  WHERE (user_id IN (SELECT followed_id FROM relationships WHERE follower_id = ?)) 
+                  WHERE (user_id IN (SELECT shareholder_followed_id FROM shareholder_relationships WHERE shareholder_follower_id = ?))
                   OR (companies.id IN (SELECT cfollowed_id from company_relationships WHERE cfollower_id = ?))
                   OR user_id = ? ORDER BY posts.created_at DESC", current_user.id, current_user.id, current_user.id]
 

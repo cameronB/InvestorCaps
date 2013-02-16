@@ -1,7 +1,7 @@
 InvestorCaps::Application.routes.draw do
   resources :users do
     member do
-      get :following, :followers, :cfollowing
+      get :shareholder_following, :shareholder_followers, :cfollowing
     end
   end
 
@@ -13,7 +13,7 @@ InvestorCaps::Application.routes.draw do
 
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :relationships, only: [:create, :destroy]
+  resources :shareholder_relationships, only: [:create, :destroy]
   resources :company_relationships, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
   resources :comments

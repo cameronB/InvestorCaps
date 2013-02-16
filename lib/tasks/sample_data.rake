@@ -47,10 +47,10 @@ end
 def make_relationships
   users = User.all
   user  = users.first
-  followed_users = users[2..5]
-  followers      = users[3..5]
-  followed_users.each { |followed| user.follow!(followed) }
-  followers.each      { |follower| follower.follow!(user) }
+  shareholder_followed_users = users[2..5]
+  shareholder_followers      = users[3..5]
+  shareholder_followed_users.each { |shareholder_followed| user.shareholder_follow!(shareholder_followed) }
+  shareholder_followers.each      { |shareholder_follower| shareholder_follower.follow!(user) }
 end
 
 

@@ -32,15 +32,15 @@ describe User do
   it { should respond_to(:posts) }
 
   it { should respond_to(:feed) }
-  it { should respond_to(:relationships) }
+  it { should respond_to(:shareholder_relationships) }
   it { should respond_to(:company_relationships) }
   it { should respond_to(:reverse_relationships) }
 
-  it { should respond_to(:followed_users) }
-  it { should respond_to(:followers) }
-  it { should respond_to(:following?) }
-  it { should respond_to(:follow!) }
-  it { should respond_to(:unfollow!) }
+  it { should respond_to(:shareholder_followed_users) }
+  it { should respond_to(:shareholder_followers) }
+  it { should respond_to(:shareholder_following?) }
+  it { should respond_to(:shareholder_follow!) }
+  it { should respond_to(:shareholder_unfollow!) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -166,22 +166,22 @@ describe User do
     let(:other_user) { FactoryGirl.create(:user) }
     before do
       @user.save
-      @user.follow!(other_user)
+      @user.shareholder_follow!(other_user)
     end
 
     it { should be_following(other_user) }
-    its(:followed_users) { should include(other_user) }
+    its(:shareholder_followed_users) { should include(other_user) }
 
     describe "followed user" do
       subject { other_user }
-      its(:followers) { should include(@user) }
+      its(:shareholder_followers) { should include(@user) }
     end
 
     describe "and unfollowing" do
-      before { @user.unfollow!(other_user) }
+      before { @user.shareholder_unfollow!(other_user) }
 
       it { should_not be_following(other_user) }
-      its(:followed_users) { should_not include(other_user) }
+      its(:shareholder_followed_users) { should_not include(other_user) }
     end
   end
 

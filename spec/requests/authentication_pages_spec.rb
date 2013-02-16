@@ -66,7 +66,7 @@ describe "Authentication" do
         end
       end
 
-      describe "In the company relationships controller" do
+      describe "In the company shareholder_relationships controller" do
         describe "submitting to the create action do" do
           before { post company_relationships_path }
           specify { response.should redirect_to(signin_path) }

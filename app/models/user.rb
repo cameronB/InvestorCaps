@@ -22,12 +22,12 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
 
   #users can follow users / users are followed by users
-  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :followed_users, through: :relationships, source: :followed
-  has_many :reverse_relationships, foreign_key: "followed_id",
-           class_name: "Relationship",
+  has_many :shareholder_relationships, foreign_key: "shareholder_follower_id", dependent: :destroy
+  has_many :shareholder_followed_users, through: :shareholder_relationships, source: :shareholder_followed
+  has_many :shareholder_reverse_relationships, foreign_key: "shareholder_followed_id",
+           class_name: "ShareholderRelationship",
            dependent: :destroy
-  has_many :followers, through: :reverse_relationships, source: :follower
+  has_many :shareholder_followers, through: :shareholder_reverse_relationships, source: :shareholder_follower
 
   #users can follow cpmpanies
   has_many :company_relationships, foreign_key: "cfollower_id", dependent: :destroy
@@ -51,16 +51,16 @@ class User < ActiveRecord::Base
     Post.from_users_followed_by(self)
   end
 
-  def following?(other_user)
-    relationships.find_by_followed_id(other_user.id)
+  def shareholder_following?(other_user)
+    shareholder_relationships.find_by_shareholder_followed_id(other_user.id)
   end
 
-  def follow!(other_user)
-    relationships.create!(followed_id: other_user.id)
+  def shareholder_follow!(other_user)
+    shareholder_relationships.create!(shareholder_followed_id: other_user.id)
   end
 
-  def unfollow!(other_user)
-    relationships.find_by_followed_id(other_user.id).destroy
+  def shareholder_unfollow!(other_user)
+    shareholder_relationships.find_by_shareholder_followed_id(other_user.id).destroy
   end
 
   def cfollowing?(other_user)

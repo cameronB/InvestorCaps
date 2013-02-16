@@ -33,7 +33,7 @@ class Post < ActiveRecord::Base
     Post.find_by_sql("SELECT 'posts'.* 
                         FROM 'posts'
                         INNER JOIN companies on posts.symbol = companies.symbol
-                        WHERE (user_id IN (SELECT followed_id FROM relationships WHERE follower_id = :user_id)) 
+                        WHERE (user_id IN (SELECT followed_id FROM shareholder_relationships WHERE follower_id = :user_id))
                         OR (companies.id IN (SELECT cfollowed_id from company_relationships WHERE cfollower_id = :user_id))
                         OR user_id = :user_id
                         ORDER BY posts.created_at DESC")

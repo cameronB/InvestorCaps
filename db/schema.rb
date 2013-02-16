@@ -66,16 +66,12 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
     t.string   "content"
   end
 
-  create_table "relationships", :force => true do |t|
-    t.integer  "follower_id"
-    t.integer  "followed_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "shareholder_relationships", :force => true do |t|
+    t.integer  "shareholder_follower_id"
+    t.integer  "shareholder_followed_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
-
-  add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
-  add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
