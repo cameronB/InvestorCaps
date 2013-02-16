@@ -10,10 +10,84 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
-/* votes */
-.votes {
+/* comment votes */
+
+.comment_votes {
+  display: block;
   list-style: none;
   margin: 10px 0 0 0;
+}
+
+div.comment_votecount {
+  float: left;
+  width: 15px;
+  text-align: center;
+  margin-top: 15px;
+  margin-top: 20px;
+}
+
+#comment_vote_item {
+  float: left;
+  margin-left: 15px;
+  width: 20px;
+}
+
+div.comment_upvote {
+  display: block;
+  margin-top: 2px;
+  height: 22px;
+  width: 18px;
+}
+
+div.comment_downvote {
+  display: block;
+  margin-top: 4px;
+  height: 22px;
+  width: 18px;
+}
+
+#comment_post_item {
+
+}
+
+/* post votes */
+
+.post_votes {
+  display: block;
+  list-style: none;
+  margin: 10px 0 0 0;
+}
+
+div.post_votecount {
+  float: left;
+  width: 15px;
+  text-align: center;
+  margin-top: 15px;
+  margin-top: 20px;
+}
+
+#post_vote_item {
+  float: left;
+  margin-left: 15px;
+  width: 20px;
+}
+
+div.post_upvote {
+  display: block;
+  margin-top: 2px;
+  height: 22px;
+  width: 18px;
+}
+
+div.post_downvote {
+  display: block;
+  margin-top: 4px;
+  height: 22px;
+  width: 18px;
+}
+
+#post_post_item {
+
 }
 
 /* posts */

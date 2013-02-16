@@ -1,4 +1,26 @@
 <li id="<%= comment_item.id %>">
+<div class="comment_votes">
+    <div class="comment_votecount">
+       <%= comment_item.comment_votes.where(:up => true).count - comment_item.comment_votes.where(:up => false).count %>
+    </div>
+    <div id="comment_vote_item">
+      <div class="comment_upvote">
+      <% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => true).present? %>
+        <%= image_tag("uparrow_true.png", :border => 0) %>
+      <% else %>
+        <%= link_to image_tag("uparrow.png", :border => 0), comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => true}), :method => :comment %>
+      <% end %>
+      </div>
+      <div class="comment_downvote">
+        <% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => false).present? %>
+          <%= image_tag("downarrow_true.png", :border => 0) %>
+        <% else %>
+          <%= link_to image_tag("downarrow.png", :border => 0), comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => false}), :method => :comment %>
+      <% end %>
+    </div>
+</div>
+
+<div id="post_post_item">
   <span class="user">
     <%= link_to gravatar_for(comment_item.user), comment_item.user %>
     <%= link_to comment_item.user.username, user_path(comment_item.user) %>
@@ -14,20 +36,5 @@
                                      data: { confirm: "You sure?" },
                                      message: comment_item.message %>
   <% end %>
+</div>
 </li>
-<span class="votes">
-Votes: <%= comment_item.comment_votes.where(:up => true).count - comment_item.comment_votes.where(:up => false).count %>
-
-<% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => true).present? %>
-  *
-<% else %>
-  <%= link_to "+", comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => true}), :method => :comment %>
-<% end %>
-
-<% if current_user && current_user.comment_votes.where(:comment_id => comment_item.id, :up => false).present? %>
-  *
-<% else %>
-  <%= link_to "-", comment_votes_path(:comment_vote => {:comment_id => comment_item.id, :up => false}), :method => :comment %>
-<% end %>
-
-</span>
