@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
   has_many :shareholder_followers, through: :shareholder_reverse_relationships, source: :shareholder_follower
 
   #users can follow cpmpanies
-  has_many :company_relationships, foreign_key: "cfollower_id", dependent: :destroy
-  has_many :cfollowed_companies, through: :company_relationships, source: :cfollowed
+  has_many :company_relationships, foreign_key: "company_follower_id", dependent: :destroy
+  has_many :company_followed_companies, through: :company_relationships, source: :company_followed
 
   before_save { self.email.downcase! }
   before_save :create_remember_token
@@ -63,16 +63,16 @@ class User < ActiveRecord::Base
     shareholder_relationships.find_by_shareholder_followed_id(other_user.id).destroy
   end
 
-  def cfollowing?(other_user)
-    company_relationships.find_by_cfollowed_id(other_user.id)
+  def company_following?(other_user)
+    company_relationships.find_by_company_followed_id(other_user.id)
   end
 
-  def cfollow!(other_user)
-    company_relationships.create!(cfollowed_id: other_user.id)
+  def company_follow!(other_user)
+    company_relationships.create!(company_followed_id: other_user.id)
   end
 
-  def cunfollow!(other_user)
-    company_relationships.find_by_cfollowed_id(other_user.id).destroy
+  def company_unfollow!(other_user)
+    company_relationships.find_by_company_followed_id(other_user.id).destroy
   end
 
   private

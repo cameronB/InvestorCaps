@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
                   FROM 'posts'
                   INNER JOIN companies on posts.symbol = companies.symbol
                   WHERE (user_id IN (SELECT shareholder_followed_id FROM shareholder_relationships WHERE shareholder_follower_id = ?))
-                  OR (companies.id IN (SELECT cfollowed_id from company_relationships WHERE cfollower_id = ?))
+                  OR (companies.id IN (SELECT company_followed_id from company_relationships WHERE company_follower_id = ?))
                   OR user_id = ? ORDER BY posts.created_at DESC", current_user.id, current_user.id, current_user.id]
 
       	@feed_items = current_user.posts.paginate_by_sql(sql, :page => @page)

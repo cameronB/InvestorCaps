@@ -24,10 +24,10 @@ class CompaniesController < ApplicationController
     redirect_to companies_path
   end
 
-  def cfollowers
+  def company_followers
     @title = "Followers"
     @company = Company.find_by_symbol(params[:id])
-    @companies = @company.cfollowers.paginate(page: params[:page])
+    @companies = @company.company_followers.paginate(page: params[:page])
     render 'show_follow_companies'
   end
 

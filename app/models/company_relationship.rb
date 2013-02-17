@@ -10,12 +10,12 @@
 #
 
 class CompanyRelationship < ActiveRecord::Base
-  attr_accessible :cfollowed_id
+  attr_accessible :company_followed_id
 
-  belongs_to :cfollower, class_name: "User"
-  belongs_to :cfollowed, class_name: "Company"
+  belongs_to :company_follower, class_name: "User"
+  belongs_to :company_followed, class_name: "Company"
 
-  validates :cfollower_id, presence: true
-  validates :cfollowed_id, presence: true
+  validates :company_follower_id, presence: true
+  validates :company_followed_id, presence: true
 
 end

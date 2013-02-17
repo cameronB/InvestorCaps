@@ -1,9 +1,9 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= cfollowers_company_path(@company) %>">
+  <a href="<%= company_followers_company_path(@company) %>">
     <strong id="followers" class="stat">
       Followed By
-      <%= @company.cfollowers.count %>
+      <%= @company.company_followers.count %>
       Shareholders
     </strong>
   </a>

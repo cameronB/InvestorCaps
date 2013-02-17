@@ -146,9 +146,8 @@ describe "Authentication" do
         end
 
         describe "visiting the users followed companies page" do
-          before { visit cfollowing_user_path(user) }
+          before { visit company_following_user_path(user) }
           it { should have_selector('title', text: 'Sign in') }
-
         end
 
         describe "visiting the following page" do

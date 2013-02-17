@@ -1,6 +1,6 @@
 <% @user ||= current_user %>
 <div id="follow_form">
-      <% if current_user.cfollowing?(@company) %>
+      <% if current_user.company_following?(@company) %>
           <%= render 'users/unfollow_company' %>
       <% else %>
           <%= render 'users/follow_company' %>

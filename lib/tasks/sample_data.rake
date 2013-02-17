@@ -57,8 +57,8 @@ end
 def make_company_relationships
   users = User.all
   user = users.first
-  cfollowed_companies       = users[1..5]
-  cfollowers                = users[2..5]
-  cfollowed_companies.each { |cfollowed| user.cfollow!(cfollowed) }
-  cfollowers.each          { |cfollower| cfollower.cfollow!(user)  }
+  company_followed_companies       = users[1..5]
+  company_followers                = users[2..5]
+  company_followed_companies.each { |company_followed| user.company_follow!(company_followed) }
+  company_followers.each          { |company_follower| company_follower.company_follow!(user)  }
 end

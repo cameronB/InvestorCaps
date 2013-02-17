@@ -1,13 +1,13 @@
 InvestorCaps::Application.routes.draw do
   resources :users do
     member do
-      get :shareholder_following, :shareholder_followers, :cfollowing
+      get :shareholder_following, :shareholder_followers, :company_following
     end
   end
 
   resources :companies do
     member do
-      get :cfollowers
+      get :company_followers
     end
   end
 

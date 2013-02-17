@@ -39,15 +39,13 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
   add_index "companies", ["symbol"], :name => "index_companies_on_symbol", :unique => true
 
   create_table "company_relationships", :force => true do |t|
-    t.integer  "cfollower_id"
-    t.integer  "cfollowed_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.integer  "company_follower_id"
+    t.integer  "company_followed_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
-  add_index "company_relationships", ["cfollowed_id"], :name => "index_company_relationships_on_cfollowed_id"
-  add_index "company_relationships", ["cfollower_id", "cfollowed_id"], :name => "index_company_relationships_on_cfollower_id_and_cfollowed_id", :unique => true
-  add_index "company_relationships", ["cfollower_id"], :name => "index_company_relationships_on_cfollower_id"
+  add_index "company_relationships", ["company_followed_id"], :name => "index_company_relationships_on_company_followed_id"
 
   create_table "post_votes", :force => true do |t|
     t.integer  "user_id"

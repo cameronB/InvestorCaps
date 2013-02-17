@@ -1,4 +1,4 @@
-<%= form_for(current_user.company_relationships.find_by_cfollowed_id(@company),
+<%= form_for(current_user.company_relationships.find_by_company_followed_id(@company),
              html: { method: :delete },
              remote: true) do |f| %>
     <%= f.submit "Unfollow", class: "btn btn-large" %>

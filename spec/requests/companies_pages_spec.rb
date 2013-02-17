@@ -22,13 +22,13 @@ describe "Company pages" do
         it "should increment the companies followed by count" do
           expect do
             click_button "Follow"
-          end.to change(user.cfollowed_companies, :count).by(1)
+          end.to change(user.company_followed_companies, :count).by(1)
         end
 
         it "should increment the users following company count" do
           expect do
             click_button "Follow"
-          end.to change(company.cfollowers, :count).by(1)
+          end.to change(company.company_followers, :count).by(1)
         end
 
         describe "toggling the follow/unfollow button" do
@@ -39,20 +39,20 @@ describe "Company pages" do
 
       describe "unfollowing a company" do
         before do
-          user.cfollow!(company)
+          user.company_follow!(company)
           visit company_path(company)
         end
 
       it "should decrement the compannies followed by count" do
         expect do
           click_button "Unfollow"
-         end.to change(user.cfollowed_companies, :count).by(-1)
+         end.to change(user.company_followed_companies, :count).by(-1)
       end
 
       it "should decrement the user's following company count" do
           expect do
             click_button "Unfollow"
-        end.to change(company.cfollowers, :count).by(-1)
+        end.to change(company.company_followers, :count).by(-1)
       end
 
       describe "toggling the follow/unfollow button" do
@@ -66,12 +66,12 @@ describe "Company pages" do
   describe "Check Company followed by a user" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_company) { FactoryGirl.create(:company) }
-    before { user.cfollow!(other_company) }
+    before { user.company_follow!(other_company) }
 
     describe "Companies followers" do
       before do
         sign_in user
-        visit cfollowers_company_path(other_company)
+        visit company_followers_company_path(other_company)
       end
 
       it { should have_selector('title', text: full_title('Followers')) }

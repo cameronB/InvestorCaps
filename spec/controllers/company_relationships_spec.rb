@@ -11,20 +11,20 @@ describe CompanyRelationshipsController do
 
     it "should increment the Relationship count" do
       expect do
-        xhr :post, :create, company_relationship: { cfollowed_id: company.id }
+        xhr :post, :create, company_relationship: { company_followed_id: company.id }
       end.to change(CompanyRelationship, :count).by(1)
     end
 
     it "should respond with success" do
-      xhr :post, :create, company_relationship: { cfollowed_id: company.id }
+      xhr :post, :create, company_relationship: { company_followed_id: company.id }
       response.should be_success
     end
   end
 
   describe "destroying a relationship with Ajax" do
 
-    before { user.cfollow!(company) }
-    let(:company_relationship) { user.company_relationships.find_by_cfollowed_id(company) }
+    before { user.company_follow!(company) }
+    let(:company_relationship) { user.company_relationships.find_by_company_followed_id(company) }
 
     it "should decrement the Relationship count" do
       expect do
