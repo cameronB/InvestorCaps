@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_filter :signed_in_user, only: :index
+  before_filter :signed_in_user, only: [:show, :index, :company_followers]
   before_filter :admin_user,     only: :destroy
 
   def show
@@ -29,9 +29,6 @@ class CompaniesController < ApplicationController
     @company = Company.find_by_symbol(params[:id])
     @companies = @company.company_followers.paginate(page: params[:page])
     render 'show_follow_companies'
-  end
-
-  def new
   end
 
   private

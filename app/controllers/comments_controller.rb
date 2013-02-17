@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
 
 	private
 
+    #check comment exists before attempting to delete
     def comment_exists
       @comment = Comment.find_by_id(params[:id])
       redirect_to root_url if @comment.nil?

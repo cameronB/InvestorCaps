@@ -2,11 +2,11 @@
 #
 # Table name: company_relationships
 #
-#  id           :integer          not null, primary key
-#  cfollower_id :integer
-#  cfollowed_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id                  :integer          not null, primary key
+#  company_follower_id :integer
+#  company_followed_id :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 require 'spec_helper'

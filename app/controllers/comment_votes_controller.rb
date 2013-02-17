@@ -23,6 +23,7 @@ class CommentVotesController < ApplicationController
 
   private
 
+    #check that the comment exists in the database before attempting delete
     def comment_vote_exists
       @comment_vote = CommentVote.find_by_id(params[:id])
       redirect_to root_url if @comment_vote.nil?
