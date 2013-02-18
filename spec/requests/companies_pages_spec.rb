@@ -9,9 +9,6 @@ describe "Company pages" do
     let(:company) { FactoryGirl.create(:company) }
     before { visit company_path(company) }
 
-    it { should have_selector('h1',    text: company.name) }
-    it { should have_selector('title', text: company.symbol) }
-
     describe "follow/unfollow buttons" do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
