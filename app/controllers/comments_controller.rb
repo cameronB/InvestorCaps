@@ -5,7 +5,21 @@ class CommentsController < ApplicationController
 	def show
 		@post = Post.find(params[:id])
 		@comment = Comment.new
-		@comment_items = @post.comments.paginate(page: params[:page])
+		#@comment_items = @post.comments.paginate(page: params[:page])
+
+		@comment_items = @post.comments.paginate_by_sql("SELECT
+  															c.*,
+  															(SELECT
+  															count(1)
+   															FROM comment_votes v_t
+   															WHERE v_t.up = 't' AND v_t.comment_id = c.id) AS upvotes,
+  															(SELECT
+  															count(1)
+   															FROM comment_votes v_f
+  														    WHERE v_f.up = 'f' AND v_f.comment_id = c.id) AS downvotes
+															FROM comments c
+															ORDER BY upvotes desc, downvotes asc", :page => @page)
+
 	end
 
 	def new
