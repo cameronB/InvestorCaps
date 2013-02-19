@@ -1,23 +1,23 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <a href="<%= company_following_user_path(@user) %>">
+  <a href="<%= c_following_user_path(@user) %>">
     <strong id="company-following" class="stat">
       Following
-      <%= @user.company_followed_companies.count %>
+      <%= @user.c_followed_companies.count %>
       Companies
     </strong>
   </a>
-  <a href="<%= shareholder_following_user_path(@user) %>">
+  <a href="<%= s_following_user_path(@user) %>">
     <strong id="shareholder_following" class="stat">
     Following
-      <%= @user.shareholder_followed_users.count %>
+      <%= @user.s_followed_users.count %>
     Shareholders
     </strong>
   </a>
-  <a href="<%= shareholder_followers_user_path(@user) %>">
+  <a href="<%= s_followers_user_path(@user) %>">
     <strong id="shareholder_followers" class="stat">
     Followed By
-      <%= @user.shareholder_followers.count %>
+      <%= @user.s_followers.count %>
     Shareholders
     </strong>
   </a>

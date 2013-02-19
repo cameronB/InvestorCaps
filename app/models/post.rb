@@ -30,12 +30,12 @@ class Post < ActiveRecord::Base
   default_scope order: 'posts.created_at DESC'
 
   def self.from_users_followed_by(user)
-    Post.find_by_sql("SELECT 'posts'.* 
-                        FROM 'posts'
+    Post.find_by_sql("SELECT *
+                        FROM posts
                         INNER JOIN companies on posts.symbol = companies.symbol
-                        WHERE (user_id IN (SELECT shareholder_followed_id FROM shareholder_relationships WHERE shareholder_follower_id = :user_id))
-                        OR (companies.id IN (SELECT company_followed_id from company_relationships WHERE company_follower_id = :user_id))
-                        OR user_id = :user_id
+                        WHERE (user_id IN (SELECT s_followed_id FROM s_relationships WHERE s_follower_id = user_id))
+                        OR (companies.id IN (SELECT c_followed_id from c_relationships WHERE c_follower_id = user_id))
+                        OR user_id = user_id
                         ORDER BY posts.created_at DESC")
   end
 

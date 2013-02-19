@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :shareholder_following, :shareholder_followers, :company_following]
+                only: [:index, :edit, :update, :destroy, :s_following, :s_followers, :c_following]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: :destroy
 
@@ -17,24 +17,24 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def company_following
+  def c_following
     @title = "Following"
     @user = User.find_by_username(params[:id])
-    @users = @user.company_followed_companies.paginate(page: params[:page])
+    @users = @user.c_followed_companies.paginate(page: params[:page])
     render 'show_follow_companies'
   end
 
-  def shareholder_following
+  def s_following
     @title = "Following"
     @user = User.find_by_username(params[:id])
-    @users = @user.shareholder_followed_users.paginate(page: params[:page])
+    @users = @user.s_followed_users.paginate(page: params[:page])
     render 'show_follow'
   end
 
-  def shareholder_followers
+  def s_followers
     @title = "Followers"
     @user = User.find_by_username(params[:id])
-    @users = @user.shareholder_followers.paginate(page: params[:page])
+    @users = @user.s_followers.paginate(page: params[:page])
     render 'show_follow'
   end
 

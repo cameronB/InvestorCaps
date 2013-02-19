@@ -102,13 +102,13 @@ describe "User pages" do
         it "should increment the followed user count" do
           expect do
             click_button "Follow"
-          end.to change(user.shareholder_followed_users, :count).by(1)
+          end.to change(user.s_followed_users, :count).by(1)
         end
 
         it "should increment the other user's followers count" do
           expect do
             click_button "Follow"
-          end.to change(other_user.shareholder_followers, :count).by(1)
+          end.to change(other_user.s_followers, :count).by(1)
         end
 
         describe "toggling the button" do
@@ -119,20 +119,20 @@ describe "User pages" do
 
       describe "unfollowing a user" do
         before do
-          user.shareholder_follow!(other_user)
+          user.s_follow!(other_user)
           visit user_path(other_user)
         end
 
         it "should decrement the followed user count" do
           expect do
             click_button "Unfollow"
-          end.to change(user.shareholder_followed_users, :count).by(-1)
+          end.to change(user.s_followed_users, :count).by(-1)
         end
 
         it "should decrement the other user's followers count" do
           expect do
             click_button "Unfollow"
-          end.to change(other_user.shareholder_followers, :count).by(-1)
+          end.to change(other_user.s_followers, :count).by(-1)
         end
 
         describe "toggling the button" do
@@ -188,12 +188,12 @@ describe "User pages" do
   describe "Check Users followed Companies" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_company) { FactoryGirl.create(:company) }
-    before { user.company_follow!(other_company) }
+    before { user.c_follow!(other_company) }
 
     describe "Companies followed" do
       before do
         sign_in user
-        visit company_following_user_path(user)
+        visit c_following_user_path(user)
       end
 
       it { should have_selector('title', text: full_title('Following')) }
@@ -206,12 +206,12 @@ describe "User pages" do
   describe "following/followers" do
     let(:user) { FactoryGirl.create(:user) }
     let(:other_user) { FactoryGirl.create(:user) }
-    before { user.shareholder_follow!(other_user) }
+    before { user.s_follow!(other_user) }
 
     describe "followed users" do
       before do
         sign_in user
-        visit shareholder_following_user_path(user)
+        visit s_following_user_path(user)
       end
 
       it { should have_selector('title', text: full_title('Following')) }
@@ -222,7 +222,7 @@ describe "User pages" do
     describe "followers" do
       before do
         sign_in other_user
-        visit shareholder_followers_user_path(other_user)
+        visit s_followers_user_path(other_user)
       end
 
       it { should have_selector('title', text: full_title('Followers')) }

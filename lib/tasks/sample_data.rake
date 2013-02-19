@@ -5,7 +5,7 @@ namespace :db do
     make_companies
     #make_posts
     #make_relationships
-    #make_company_relationships
+    #make_c_relationships
   end
 end
 
@@ -54,7 +54,7 @@ def make_relationships
 end
 
 
-def make_company_relationships
+def make_c_relationships
   users = User.all
   user = users.first
   company_followed_companies       = users[1..5]

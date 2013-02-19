@@ -31,14 +31,14 @@ describe User do
   it { should respond_to(:authenticate) }
   it { should respond_to(:posts) }
   it { should respond_to(:feed) }
-  it { should respond_to(:company_relationships) }
-  it { should respond_to(:shareholder_relationships) }
-  it { should respond_to(:shareholder_reverse_relationships) }
-  it { should respond_to(:shareholder_followed_users) }
-  it { should respond_to(:shareholder_followers) }
-  it { should respond_to(:shareholder_following?) }
-  it { should respond_to(:shareholder_follow!) }
-  it { should respond_to(:shareholder_unfollow!) }
+  it { should respond_to(:c_relationships) }
+  it { should respond_to(:s_relationships) }
+  it { should respond_to(:s_reverse_relationships) }
+  it { should respond_to(:s_followed_users) }
+  it { should respond_to(:s_followers) }
+  it { should respond_to(:s_following?) }
+  it { should respond_to(:s_follow!) }
+  it { should respond_to(:s_unfollow!) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -164,22 +164,22 @@ describe User do
     let(:other_user) { FactoryGirl.create(:user) }
     before do
       @user.save
-      @user.shareholder_follow!(other_user)
+      @user.s_follow!(other_user)
     end
 
-    it { should be_shareholder_following(other_user) }
-    its(:shareholder_followed_users) { should include(other_user) }
+    it { should be_s_following(other_user) }
+    its(:s_followed_users) { should include(other_user) }
 
     describe "followed user" do
       subject { other_user }
-      its(:shareholder_followers) { should include(@user) }
+      its(:s_followers) { should include(@user) }
     end
 
     describe "and unfollowing" do
-      before { @user.shareholder_unfollow!(other_user) }
+      before { @user.s_unfollow!(other_user) }
 
-      it { should_not be_shareholder_following(other_user) }
-      its(:shareholder_followed_users) { should_not include(other_user) }
+      it { should_not be_s_following(other_user) }
+      its(:s_followed_users) { should_not include(other_user) }
     end
   end
 
@@ -187,22 +187,22 @@ describe User do
     let(:other_company) { FactoryGirl.create(:company) }
     before do
       @user.save
-      @user.company_follow!(other_company)
+      @user.c_follow!(other_company)
   end
 
-  it { should be_company_following(other_company) }
-  its(:company_followed_companies) { should include(other_company) }
+  it { should be_c_following(other_company) }
+  its(:c_followed_companies) { should include(other_company) }
 
    describe "Check that Company is now being followed by the user" do
       subject { other_company }
-      its(:company_followers) {should include(@user) }
+      its(:c_followers) {should include(@user) }
    end
 
     describe "user can unfollow a company" do
-      before { @user.company_unfollow!(other_company) }
+      before { @user.c_unfollow!(other_company) }
 
-      it { should_not be_company_following(other_company) }
-      its(:company_followed_companies) { should_not include(other_company) }
+      it { should_not be_c_following(other_company) }
+      its(:c_followed_companies) { should_not include(other_company) }
     end
   end
 end

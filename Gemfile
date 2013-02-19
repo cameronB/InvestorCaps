@@ -6,9 +6,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
+gem 'pg'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.6'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'spork', '0.9.2'
@@ -37,5 +37,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+
 end

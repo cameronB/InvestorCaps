@@ -18,10 +18,10 @@ class Company < ActiveRecord::Base
 
   #Companies have user followers but can not follow users or other companies
   has_many :posts, dependent: :destroy
-  has_many :company_reverse_relationships, foreign_key: "company_followed_id",
-           class_name:  "CompanyRelationship",
+  has_many :c_reverse_relationships, foreign_key: "c_followed_id",
+           class_name:  "CRelationship",
            dependent:   :destroy
-  has_many :company_followers, through: :company_reverse_relationships, source: :company_follower
+  has_many :c_followers, through: :c_reverse_relationships, source: :c_follower
 
   def to_param
     symbol

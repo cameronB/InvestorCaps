@@ -66,14 +66,14 @@ describe "Authentication" do
         end
       end
 
-      describe "In the company shareholder_relationships controller" do
+      describe "In the company s_relationships controller" do
         describe "submitting to the create action do" do
-          before { post company_relationships_path }
+          before { post c_relationships_path }
           specify { response.should redirect_to(signin_path) }
         end
 
         describe "submitting to the destroy action" do
-          before { delete company_relationship_path(1) }
+          before { delete c_relationship_path(1) }
           specify { response.should redirect_to(signin_path) }
         end
       end
@@ -146,17 +146,17 @@ describe "Authentication" do
         end
 
         describe "visiting the users followed companies page" do
-          before { visit company_following_user_path(user) }
+          before { visit s_following_user_path(user) }
           it { should have_selector('title', text: 'Sign in') }
         end
 
         describe "visiting the following page" do
-          before { visit shareholder_following_user_path(user) }
+          before { visit s_following_user_path(user) }
           it { should have_selector('title', text: 'Sign in') }
         end
 
         describe "visiting the followers page" do
-          before { visit shareholder_followers_user_path(user) }
+          before { visit s_followers_user_path(user) }
           it { should have_selector('title', text: 'Sign in') }
         end
       end

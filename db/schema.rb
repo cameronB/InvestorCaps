@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(:version => 20130215234826) do
 
+  create_table "c_relationships", :force => true do |t|
+    t.integer  "c_follower_id"
+    t.integer  "c_followed_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "c_relationships", ["c_followed_id"], :name => "index_c_relationships_on_c_followed_id"
+  add_index "c_relationships", ["c_follower_id", "c_followed_id"], :name => "index_c_relationships_on_c_follower_id_and_c_followed_id", :unique => true
+  add_index "c_relationships", ["c_follower_id"], :name => "index_c_relationships_on_c_follower_id"
+
   create_table "comment_votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
@@ -38,15 +49,6 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
 
   add_index "companies", ["symbol"], :name => "index_companies_on_symbol", :unique => true
 
-  create_table "company_relationships", :force => true do |t|
-    t.integer  "company_follower_id"
-    t.integer  "company_followed_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-  end
-
-  add_index "company_relationships", ["company_followed_id"], :name => "index_company_relationships_on_company_followed_id"
-
   create_table "post_votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -64,12 +66,16 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
     t.string   "content"
   end
 
-  create_table "shareholder_relationships", :force => true do |t|
-    t.integer  "shareholder_follower_id"
-    t.integer  "shareholder_followed_id"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+  create_table "s_relationships", :force => true do |t|
+    t.integer  "s_follower_id"
+    t.integer  "s_followed_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
+
+  add_index "s_relationships", ["s_followed_id"], :name => "index_s_relationships_on_s_followed_id"
+  add_index "s_relationships", ["s_follower_id", "s_followed_id"], :name => "index_s_relationships_on_s_follower_id_and_s_followed_id", :unique => true
+  add_index "s_relationships", ["s_follower_id"], :name => "index_s_relationships_on_s_follower_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -83,13 +89,5 @@ ActiveRecord::Schema.define(:version => 20130215234826) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-
-  create_table "votes", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.boolean  "up"
-  end
 
 end

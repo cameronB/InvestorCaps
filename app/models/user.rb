@@ -22,16 +22,16 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
 
   #users can follow users / users are followed by users
-  has_many :shareholder_relationships, foreign_key: "shareholder_follower_id", dependent: :destroy
-  has_many :shareholder_followed_users, through: :shareholder_relationships, source: :shareholder_followed
-  has_many :shareholder_reverse_relationships, foreign_key: "shareholder_followed_id",
-           class_name: "ShareholderRelationship",
+  has_many :s_relationships, foreign_key: "s_follower_id", dependent: :destroy
+  has_many :s_followed_users, through: :s_relationships, source: :s_followed
+  has_many :s_reverse_relationships, foreign_key: "s_followed_id",
+           class_name: "SRelationship",
            dependent: :destroy
-  has_many :shareholder_followers, through: :shareholder_reverse_relationships, source: :shareholder_follower
+  has_many :s_followers, through: :s_reverse_relationships, source: :s_follower
 
   #users can follow cpmpanies
-  has_many :company_relationships, foreign_key: "company_follower_id", dependent: :destroy
-  has_many :company_followed_companies, through: :company_relationships, source: :company_followed
+  has_many :c_relationships, foreign_key: "c_follower_id", dependent: :destroy
+  has_many :c_followed_companies, through: :c_relationships, source: :c_followed
 
   before_save { self.email.downcase! }
   before_save :create_remember_token
@@ -51,28 +51,28 @@ class User < ActiveRecord::Base
     Post.from_users_followed_by(self)
   end
 
-  def shareholder_following?(other_user)
-    shareholder_relationships.find_by_shareholder_followed_id(other_user.id)
+  def s_following?(other_user)
+    s_relationships.find_by_s_followed_id(other_user.id)
   end
 
-  def shareholder_follow!(other_user)
-    shareholder_relationships.create!(shareholder_followed_id: other_user.id)
+  def s_follow!(other_user)
+    s_relationships.create!(s_followed_id: other_user.id)
   end
 
-  def shareholder_unfollow!(other_user)
-    shareholder_relationships.find_by_shareholder_followed_id(other_user.id).destroy
+  def s_unfollow!(other_user)
+    s_relationships.find_by_s_followed_id(other_user.id).destroy
   end
 
-  def company_following?(other_user)
-    company_relationships.find_by_company_followed_id(other_user.id)
+  def c_following?(other_user)
+    c_relationships.find_by_c_followed_id(other_user.id)
   end
 
-  def company_follow!(other_user)
-    company_relationships.create!(company_followed_id: other_user.id)
+  def c_follow!(other_user)
+    c_relationships.create!(c_followed_id: other_user.id)
   end
 
-  def company_unfollow!(other_user)
-    company_relationships.find_by_company_followed_id(other_user.id).destroy
+  def c_unfollow!(other_user)
+    c_relationships.find_by_c_followed_id(other_user.id).destroy
   end
 
   private
