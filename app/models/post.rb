@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   default_scope order: 'posts.created_at DESC'
 
   def self.from_users_followed_by(user)
-    Post.find_by_sql("SELECT *
+    Post.find_by_sql("SELECT posts.*
                         FROM posts
                         INNER JOIN companies on posts.symbol = companies.symbol
                         WHERE (user_id IN (SELECT s_followed_id FROM s_relationships WHERE s_follower_id = user_id))

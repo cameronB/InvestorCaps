@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   def home
   	  if signed_in?
       	@post  = current_user.posts.build
-        sql = ["SELECT *
+        sql = ["SELECT posts.*
                   FROM posts
                   INNER JOIN companies on posts.symbol = companies.symbol
                   WHERE (user_id IN (SELECT s_followed_id FROM s_relationships WHERE s_follower_id = ?))
