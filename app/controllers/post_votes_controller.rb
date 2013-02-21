@@ -1,5 +1,5 @@
 class PostVotesController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :authenticate_user!
   before_filter :post_vote_exists, only: :destroy
 
   def create

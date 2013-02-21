@@ -1,5 +1,5 @@
 class CRelationshipsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :authenticate_user!
 
   respond_to :html, :js
 

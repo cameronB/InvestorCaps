@@ -1,5 +1,5 @@
 class CommentVotesController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :authenticate_user!
   before_filter :comment_vote_exists, only: :destroy
 
   def create

@@ -5,9 +5,11 @@
       <%= render 'shareholder_follow_form' if signed_in? %>
         <%= gravatar_for @user, size: 52 %>
       <h1>
-        <%= @user.username %>
+          <%= @user.username %>
       </h1>
-      <span><%= link_to "view my feed", root_url %></span>
+      <% if current_user?(@user.username) %>
+        <span><%= link_to "view my feed", root_url %></span>
+      <% end %>
     </section>
     <section>
       <%= render 'shared/stats' %>

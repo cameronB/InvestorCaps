@@ -13,8 +13,14 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :username, :email, :password
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_me
 
   has_many :post_votes
   has_many :comment_votes
@@ -34,14 +40,6 @@ class User < ActiveRecord::Base
   has_many :c_followed_companies, through: :c_relationships, source: :c_followed
 
   before_save { self.email.downcase! }
-  before_save :create_remember_token
-
-  validates :username, presence: true, length: { maximum: 20 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true,
-            format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
 
   def to_param
     username
@@ -75,9 +73,4 @@ class User < ActiveRecord::Base
     c_relationships.find_by_c_followed_id(other_user.id).destroy
   end
 
-  private
-
-  def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
-  end
 end

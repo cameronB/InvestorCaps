@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_filter :signed_in_user, only: [:create, :destroy]
+before_filter :authenticate_user!
 before_filter :post_exists, only: :destroy
 
 def index

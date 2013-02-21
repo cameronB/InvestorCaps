@@ -1,6 +1,5 @@
 class CompaniesController < ApplicationController
-  before_filter :signed_in_user, only: [:show, :index, :c_followers]
-  before_filter :admin_user,     only: :destroy
+  before_filter :authenticate_user!
 
   def show
     @company = Company.find_by_symbol(params[:id])

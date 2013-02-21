@@ -1,5 +1,7 @@
 InvestorCaps::Application.routes.draw do
 
+  devise_for :users
+
   resources :users do
     member do
       get :s_following, :s_followers, :c_following
@@ -12,8 +14,6 @@ InvestorCaps::Application.routes.draw do
     end
   end
 
-
-  resources :sessions, only: [:new, :create, :destroy]
   resources :s_relationships, only: [:create, :destroy]
   resources :c_relationships, only: [:create, :destroy]
   resources :posts, only: [:create, :destroy]
@@ -25,9 +25,10 @@ InvestorCaps::Application.routes.draw do
   root to: 'static_pages#home'
 
   #(Shareholder) Registration
-  match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+devise_scope :user do
+  get "signin", :to => "devise/sessions#new"
+  get "signup", :to => "devise/registrations#new"
+end
 
   #general
   match '/help',    to: 'static_pages#help'

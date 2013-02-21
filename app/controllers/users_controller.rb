@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :s_following, :s_followers, :c_following]
-  before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
+ before_filter :authenticate_user!
 
   def index
     @users = User.paginate(page: params[:page])
