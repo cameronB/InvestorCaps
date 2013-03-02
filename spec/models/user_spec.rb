@@ -17,18 +17,15 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(username: "Example User", email: "user@example.com", password: "foobar")
+    @user = User.new(username: "Example User", email: "user@example.com", password: "foobar1234")
   end
 
   subject { @user }
 
   it { should respond_to(:username) }
   it { should respond_to(:email) }
-  it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
-  it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
-  it { should respond_to(:authenticate) }
   it { should respond_to(:posts) }
   it { should respond_to(:feed) }
   it { should respond_to(:c_relationships) }
@@ -56,15 +53,6 @@ describe User do
     it "should have the right posts in the right order" do
       @user.posts.should == [newer_post, older_post]
     end
-  
-    it "should destroy associated posts" do
-      posts = @user.posts.dup
-      @user.destroy
-      posts.should_not be_empty
-      posts.each do |post|
-        Post.find_by_id(post.id).should be_nil
-      end
-    end
   end
 
   describe "accessible attributes" do
@@ -91,11 +79,6 @@ describe User do
 
   describe "when email is not present" do
     before { @user.email = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when username is too long" do
-    before { @user.username = "a" * 51 }
     it { should_not be_valid }
   end
 
@@ -137,27 +120,6 @@ describe User do
       @user.save
       @user.reload.email.should == mixed_case_email.downcase
     end
-  end
-
-  describe "return value of authenticate method" do
-    before { @user.save }
-    let(:found_user) { User.find_by_email(@user.email) }
-
-    describe "with valid password" do
-      it { should == found_user.authenticate(@user.password) }
-    end
-
-    describe "with invalid password" do
-      let(:user_for_invalid_password) { found_user.authenticate("invalid") }
-
-      it { should_not == user_for_invalid_password }
-      specify { user_for_invalid_password.should be_false }
-    end
-  end
-
-  describe "remember token" do
-    before { @user.save }
-    its(:remember_token) { should_not be_blank }
   end
 
   describe "following" do

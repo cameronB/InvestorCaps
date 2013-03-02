@@ -18,7 +18,7 @@ describe "Authentication" do
       before { click_button "Sign in" }
 
       it { should have_selector('title', text: 'Sign in') }
-      it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      it { should have_selector('div.alert.alert-alert', text: 'You need to sign in or sign up before continuing.') }
 
       describe "after visiting another page" do
         before { click_link "Home" }
@@ -37,8 +37,8 @@ describe "Authentication" do
       it { should have_selector('title', text: 'Home')}
       it { should have_link('Shareholders', href: users_path) }
       it { should have_link('My Posts', href: user_path(user)) }
-      it { should have_link('Settings', href: edit_user_path(user)) }
-      it { should have_link('Sign out', href: signout_path) }
+      it { should have_link('Settings', href: edit_user_registration_path) }
+      it { should have_link('Sign out', href: destroy_user_session_path) }
       it { should_not have_link('Sign in', href: signin_path) }
 
       describe "followed by signout" do
@@ -80,24 +80,24 @@ describe "Authentication" do
 
       describe "when attempting to visit a protected page" do
         before do
-          visit edit_user_path(user)
-          fill_in "Email", with: user.email
-          fill_in "Password", with: user.password
+          visit edit_user_registration_path
+          fill_in "user_email", with: user.email
+          fill_in "user_password", with: user.password
           click_button "Sign in"
         end
 
         describe "after signing in" do
 
           it "should render the desired protected page" do
-            page.should have_selector('title', text: 'Home')
+            page.should have_selector('title', text: 'Edit')
           end
 
           describe "when signing in again" do
             before do
-              delete signout_path
+              click_link "Sign out"
               visit signin_path
-              fill_in "Email", with: user.email
-              fill_in "Password", with: user.password
+              fill_in "user_email", with: user.email
+              fill_in "user_password", with: user.password
               click_button "Sign in"
             end
 
@@ -123,7 +123,7 @@ describe "Authentication" do
 
           describe "submitting a DELETE request to the Companies#destroy action" do
             before { delete company_path(company) }
-            specify { response.should redirect_to(root_url) }
+            specify { response.should redirect_to(signin_path) }
           end
         end
       end
@@ -131,13 +131,8 @@ describe "Authentication" do
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
-          before { visit edit_user_path(user) }
+          before { visit edit_user_registration_path }
           it { should have_selector('title', text: 'Sign in') }
-        end
-
-        describe "submitting to the update action" do
-          before { put user_path(user) }
-          specify { response.should redirect_to(signin_url) }
         end
 
         describe "visiting user index" do
@@ -167,13 +162,8 @@ describe "Authentication" do
       before { sign_in user }
 
       describe "visiting Users#edit page" do
-        before { visit edit_user_path(wrong_user) }
+        before { visit edit_user_registration_path(wrong_user) }
         it { should have_selector('title', text: full_title('')) }
-      end
-
-      describe "submitting a PUT request to the Users#update action" do
-        before { put user_path(wrong_user) }
-        specify { response.should redirect_to(root_url) }
       end
     end
   end
@@ -185,10 +175,6 @@ describe "Authentication" do
 
       before { sign_in non_admin }
 
-      describe "submitting a DELETE request to the Users#destroy action" do
-        before { delete user_path(user) }
-        specify { response.should redirect_to(root_url) }
-      end
     end
   end
 end

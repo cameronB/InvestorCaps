@@ -104,6 +104,7 @@ describe "Company pages" do
         describe "as an admin user" do
           let(:admin) { FactoryGirl.create(:admin) }
           before do
+            click_link "Sign out"
             sign_in admin
             visit companies_path
           end

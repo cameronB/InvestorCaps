@@ -62,6 +62,7 @@ describe "User pages" do
       describe "as an admin user" do
         let(:admin) { FactoryGirl.create(:admin) }
         before do
+          click_link "Sign out"
           sign_in admin
           visit users_path
         end
@@ -70,15 +71,16 @@ describe "User pages" do
         it "should be able to delete another user" do
           expect { click_link('delete') }.to change(User, :count).by(-1)
         end
-        it { should_not have_link('delete', href: user_path(admin)) }
       end
     end
   end
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:post1) { FactoryGirl.create(:post, user: user, symbol: "LCY", title: "Great new annoucment", content: "Buyout yay!") }
-    let!(:post2) { FactoryGirl.create(:post, user: user, symbol: "HAW", title: "Bad new annoucment", content: "OMG no a buyout") }
+    let!(:post1) { FactoryGirl.create(:post, user: user, symbol: "LCY", title: "Great new announcement", content: "Buyout yay!") }
+    let!(:post2) { FactoryGirl.create(:post, user: user, symbol: "HAW", title: "Bad new announcement", content: "OMG no a buyout") }
+
+    before { sign_in user }
 
     before { visit user_path(user) }
 
@@ -88,13 +90,20 @@ describe "User pages" do
     end
 
      it "should have the correct title" do
-        click_link "Great new annoucment"
-        page.should have_selector 'title', text: full_title('Great new annoucment')
+        click_link "Great new announcement"
+        page.should have_selector 'title', text: full_title('Great new announcement')
     end
     
     describe "follow/unfollow buttons" do
       let(:other_user) { FactoryGirl.create(:user) }
-      before { sign_in user }
+
+      before do
+        click_link "Sign out"
+        visit signin_path
+        fill_in "user_email", with: user.email
+        fill_in "user_password", with: user.password
+        click_button "Sign in"
+      end
 
       describe "following a user" do
         before { visit user_path(other_user) }
@@ -146,15 +155,15 @@ describe "User pages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_selector('h1', text: 'Register') }
-    it { should have_selector('title', text: full_title('Register')) }
+    it { should have_selector('h1', text: 'Sign up') }
+    it { should have_selector('title', text: full_title('Sign up')) }
   end
 
   describe "signup" do
 
     before { visit signup_path }
 
-    let(:submit) { "Create my account" }
+    let(:submit) { "Sign up" }
 
     describe "with invalid information" do
       it "should not create a user" do
@@ -164,9 +173,10 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "Username", with: "Example"
-        fill_in "Email", with: "user@example.com"
-        fill_in "Password", with: "foobar"
+        fill_in "user_username", with: "Example"
+        fill_in "user_email", with: "user@example.com"
+        fill_in "user_password", with: "foobar1234"
+        fill_in "user_password_confirmation", with: "foobar1234"
       end
 
       it "should create a user" do
@@ -178,8 +188,7 @@ describe "User pages" do
 
         let(:user) { User.find_by_email('user@example.com') }
 
-        it { should have_selector('title', text: user.username) }
-        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
+        it { should have_selector('div.alert.alert-notice', text: 'Welcome! You have signed up successfully.') }
         it { should have_link('Sign out') }
       end
     end
