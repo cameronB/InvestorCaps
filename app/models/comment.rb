@@ -15,7 +15,7 @@ class Comment < ActiveRecord::Base
 	
 	validates :user_id, presence: true
 	validates :post_id, presence: true
-  validates :message, presence: true, length: { maximum: 500 }
+  	validates :message, presence: true, length: { maximum: 500 }
 
 	belongs_to :post
 	belongs_to :user

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219110215) do
+ActiveRecord::Schema.define(:version => 20130301234307) do
 
   create_table "c_relationships", :force => true do |t|
     t.integer  "c_follower_id"
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(:version => 20130219110215) do
   add_index "s_relationships", ["s_follower_id"], :name => "index_s_relationships_on_s_follower_id"
 
   create_table "users", :force => true do |t|
-    t.string   "username",               :default => "", :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "username",               :default => "",    :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -96,8 +96,9 @@ ActiveRecord::Schema.define(:version => 20130219110215) do
     t.integer  "failed_attempts",        :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.boolean  "admin",                  :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
