@@ -4,14 +4,14 @@
       <%= feed_item.post_votes.where(:up => true).count - feed_item.post_votes.where(:up => false).count %>
     </div>
     <div id="post_vote_item">
-    <div class="post_upvote">
+    <div id="post_upvote" class="post_upvote">
       <% if current_user && current_user.post_votes.where(:post_id => feed_item.id, :up => true).present? %>
         <%= link_to image_tag("uparrow_true.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id}), :method => :post %>
       <% else %> 
         <%= link_to image_tag("uparrow.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id, :up => true}), :method => :post %>
       <% end %>
     </div>
-    <div class="post_downvote">
+    <div id="post_downvote" class="post_downvote">
       <% if current_user && current_user.post_votes.where(:post_id => feed_item.id, :up => false).present? %>
         <%= link_to image_tag("downarrow_true.png", :border => 0), post_votes_path(:post_vote => {:post_id => feed_item.id}), :method => :post %>
       <% else %>

@@ -44,10 +44,10 @@ describe "Comment Pages" do
   	end
 
     describe "with invalid information" do
-      let!(:post) { FactoryGirl.create(:post, user: user, symbol: "RIO", title: "Annoucement out", content: "Wow great annoucement out") }
+      let!(:post) { FactoryGirl.create(:post, user: user, symbol: "RIO", title: "Announcement out", content: "Wow great announcement out") }
 
       before { visit user_path(user) }
-      before { click_link "Annoucement out" }
+      before { click_link "Announcement out" }
 
       it "should not create a post" do
         expect { click_button "Post Comment" }.not_to change(Comment, :count)
