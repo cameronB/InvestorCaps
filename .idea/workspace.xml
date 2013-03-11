@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081e7b49-3e81-4b13-af1e-e753de97503f" name="Default" comment="">
-      <change type="MOVED" beforePath="C:\Users\Cameron\Desktop\InvestorCaps\features\signing_in.feature" afterPath="$PROJECT_DIR$/features/visit_root.feature" />
-      <change type="MOVED" beforePath="C:\Users\Cameron\Desktop\InvestorCaps\features\step_definitions\autentication_steps.rb" afterPath="$PROJECT_DIR$/features/step_definitions/root_steps.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/InvestorCaps.iml" afterPath="$PROJECT_DIR$/.idea/InvestorCaps.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/support/env.rb" afterPath="$PROJECT_DIR$/features/support/env.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/spec_helper.rb" afterPath="$PROJECT_DIR$/spec/spec_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/cucumber.yml" afterPath="$PROJECT_DIR$/config/cucumber.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InvestorCaps.iws" />
@@ -61,6 +55,7 @@
     <file path="/companies_pages_spec.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362211132992" ignored="false" />
     <file path="/visit_root.feature" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362981957351" ignored="false" />
     <file path="/root_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362981833406" ignored="false" />
+    <file path="/cucumber.yml" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362984474100" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,10 +77,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="visit_root.feature" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="visit_root.feature" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="43" selection-start="148" selection-end="148" vertical-scroll-proportion="0.11409396">
+            <state line="6" column="123" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,6 +90,15 @@
         <entry file="file://$PROJECT_DIR$/features/step_definitions/root_steps.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state line="6" column="43" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cucumber.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/cucumber.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="55" selection-start="430" selection-end="430" vertical-scroll-proportion="0.13310961">
               <folding />
             </state>
           </provider>
@@ -118,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
         <option value="$PROJECT_DIR$/spec/models/user_spec.rb" />
         <option value="$PROJECT_DIR$/spec/requests/authentication_pages_spec.rb" />
         <option value="$PROJECT_DIR$/spec/requests/companies_pages_spec.rb" />
@@ -134,6 +137,7 @@
         <option value="$PROJECT_DIR$/features/support/env.rb" />
         <option value="$PROJECT_DIR$/features/step_definitions/root_steps.rb" />
         <option value="$PROJECT_DIR$/features/visit_root.feature" />
+        <option value="$PROJECT_DIR$/config/cucumber.yml" />
       </list>
     </option>
   </component>
@@ -1160,11 +1164,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spec/models/user_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="7" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="17" selection-start="981" selection-end="1002" vertical-scroll-proportion="0.0">
@@ -1256,6 +1255,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="123" selection-start="158" selection-end="158" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/features/step_definitions/root_steps.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="43" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
@@ -1263,9 +1269,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
+    <entry file="file://$PROJECT_DIR$/config/cucumber.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="43" selection-start="148" selection-end="148" vertical-scroll-proportion="0.11409396">
+        <state line="7" column="55" selection-start="430" selection-end="430" vertical-scroll-proportion="0.13310961">
           <folding />
         </state>
       </provider>
