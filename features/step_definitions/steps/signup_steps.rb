@@ -2,7 +2,7 @@ When /^I navigate to the sign up screen$/ do
   visit signup_path
 end
 
-When /^I register a new user$/ do
+When /^I attempt to register a user that already exists$/ do
   fill_in "user_username", with: "Gerald"
   fill_in "user_email", with: "Gerald101@investorcaps.com"
   fill_in "user_password", with: "foobar1234"

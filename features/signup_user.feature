@@ -3,7 +3,8 @@ Feature: User signs up to InvestorCaps
 Background:
   Given I visit InvestorCaps
 
-Scenario: I expect to be able to register to InvestorCaps
+Scenario: I expect to not be able to register if username or email already exists
   When I navigate to the sign up screen
-  And I register a new user
-  Then I should see "Welcome! You have signed up successfully."
+  And I attempt to register a user that already exists
+  Then I should see "Email has already been taken"
+  And I should see "Username has already been taken"
