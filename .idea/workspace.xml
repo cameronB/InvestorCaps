@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081e7b49-3e81-4b13-af1e-e753de97503f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/step_definitions/signin_steps.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/visit_signin.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/support/env.rb" afterPath="$PROJECT_DIR$/features/support/env.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/step_definitions/common_steps.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/step_definitions/post_steps.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/visit_post.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/root_steps.rb" afterPath="$PROJECT_DIR$/features/step_definitions/root_steps.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/visit_root.feature" afterPath="$PROJECT_DIR$/features/visit_root.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/step_definitions/signin_steps.rb" afterPath="$PROJECT_DIR$/features/step_definitions/signin_steps.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/visit_signin.feature" afterPath="$PROJECT_DIR$/features/visit_signin.feature" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="InvestorCaps.iws" />
@@ -60,9 +61,12 @@
     <file path="/visit_root.feature" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362992608244" ignored="false" />
     <file path="/root_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362994333363" ignored="false" />
     <file path="/cucumber.yml" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362984474100" ignored="false" />
-    <file path="/visit_signin.feature" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362993326623" ignored="false" />
-    <file path="/signin_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362994325283" ignored="false" />
+    <file path="/visit_signin.feature" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362997372107" ignored="false" />
+    <file path="/signin_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362997355417" ignored="false" />
     <file path="/env.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362994879316" ignored="false" />
+    <file path="/visit_post.feature" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362998209401" ignored="false" />
+    <file path="/common_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362998089188" ignored="false" />
+    <file path="/post_steps.rb" changelist="081e7b49-3e81-4b13-af1e-e753de97503f" time="1362998320986" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,19 +88,46 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="visit_signin.feature" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/visit_signin.feature">
+      <file leaf-file-name="visit_post.feature" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/features/visit_post.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="26" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
+            <state line="8" column="40" selection-start="191" selection-end="191" vertical-scroll-proportion="0.15212528">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signin_steps.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="common_steps.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/step_definitions/common_steps.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="3" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signin_steps.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/signin_steps.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="42" selection-start="289" selection-end="289" vertical-scroll-proportion="0.17114094">
+            <state line="8" column="3" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="visit_signin.feature" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/visit_signin.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="28" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post_steps.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/features/step_definitions/post_steps.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="3" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -105,25 +136,16 @@
       <file leaf-file-name="root_steps.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/features/step_definitions/root_steps.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="66" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="env.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/support/env.rb">
+      <file leaf-file-name="post_pages_spec.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/requests/post_pages_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="9" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="visit_root.feature" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="50" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
+            <state line="22" column="17" selection-start="570" selection-end="589" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -147,9 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/spec/requests/companies_pages_spec.rb" />
-        <option value="$PROJECT_DIR$/app/models/user.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/spec/requests/users_pages_spec.rb" />
         <option value="$PROJECT_DIR$/spec/support/utilities.rb" />
         <option value="$PROJECT_DIR$/spec/requests/comments_pages_spec.rb" />
@@ -159,10 +178,13 @@
         <option value="$PROJECT_DIR$/spec/spec_helper.rb" />
         <option value="$PROJECT_DIR$/config/cucumber.yml" />
         <option value="$PROJECT_DIR$/features/visit_root.feature" />
-        <option value="$PROJECT_DIR$/features/visit_signin.feature" />
-        <option value="$PROJECT_DIR$/features/step_definitions/signin_steps.rb" />
-        <option value="$PROJECT_DIR$/features/step_definitions/root_steps.rb" />
         <option value="$PROJECT_DIR$/features/support/env.rb" />
+        <option value="$PROJECT_DIR$/features/visit_signin.feature" />
+        <option value="$PROJECT_DIR$/features/step_definitions/root_steps.rb" />
+        <option value="$PROJECT_DIR$/features/visit_post.feature" />
+        <option value="$PROJECT_DIR$/features/step_definitions/signin_steps.rb" />
+        <option value="$PROJECT_DIR$/features/step_definitions/common_steps.rb" />
+        <option value="$PROJECT_DIR$/features/step_definitions/post_steps.rb" />
       </list>
     </option>
   </component>
@@ -285,24 +307,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="features" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InvestorCaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="InvestorCaps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="features" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="support" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1107,27 +1111,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spec/requests/authentication_pages_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="144" column="12" selection-start="4579" selection-end="4579" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/requests/votes_pages_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/requests/static_pages_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="436" selection-end="436" vertical-scroll-proportion="0.025954198">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="63" column="46" selection-start="1416" selection-end="1416" vertical-scroll-proportion="0.45496184">
@@ -1138,20 +1121,6 @@
     <entry file="file://$PROJECT_DIR$/spec/requests/comments_pages_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="126" selection-start="50" selection-end="50" vertical-scroll-proportion="0.025954198">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/requests/post_pages_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="818" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="51" selection-start="675" selection-end="675" vertical-scroll-proportion="0.55877864">
           <folding />
         </state>
       </provider>
@@ -1170,30 +1139,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="50" selection-start="172" selection-end="172" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/requests/users_pages_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="221" column="0" selection-start="6362" selection-end="6362" vertical-scroll-proportion="3.860179">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/step_definitions/root_steps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="66" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/features/visit_signin.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="26" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1205,16 +1153,72 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="32" selection-start="514" selection-end="514" vertical-scroll-proportion="0.41834453">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/features/support/env.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="9" selection-start="848" selection-end="848" vertical-scroll-proportion="0.0">
+        <state line="18" column="9" selection-start="848" selection-end="848" vertical-scroll-proportion="0.34228188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/visit_root.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="32" selection-start="154" selection-end="154" vertical-scroll-proportion="0.11409396">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/requests/post_pages_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="17" selection-start="570" selection-end="589" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/common_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="3" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/post_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="3" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/root_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/features/step_definitions/signin_steps.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="42" selection-start="289" selection-end="289" vertical-scroll-proportion="0.17114094">
+        <state line="8" column="3" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/visit_signin.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="28" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/visit_post.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="40" selection-start="191" selection-end="191" vertical-scroll-proportion="0.15212528">
           <folding />
         </state>
       </provider>

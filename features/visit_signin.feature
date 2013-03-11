@@ -3,7 +3,7 @@ Feature: User signs into InvestorCaps
 Background:
   Given I visit InvestorCaps
 
-Scenario: when I signin i expect to be on the home page
-  When I navigate to the signin screen
+Scenario: when I sign in i expect to be signed in successfully
+  When I navigate to the sign in screen
   And I login as a user
-  Then I should see the title "InvestorCaps | Home"
+  Then I should see "Signed in successfully."
