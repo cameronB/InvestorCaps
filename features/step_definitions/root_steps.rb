@@ -1,5 +1,5 @@
-Given /^I am on InvestorCaps$/ do
-  visit "http://localhost:3000/"
+Given /^I visit InvestorCaps$/ do
+  visit root_path
 end
 
 Then /^I should see the title "(.*)"$/ do |title|

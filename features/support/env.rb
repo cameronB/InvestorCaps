@@ -14,6 +14,7 @@ require 'rspec/expectations'
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_driver = :selenium
+Capybara.app_host = "https://fast-savannah-2864.herokuapp.com/"
 Capybara.default_selector = :css
 
 # By default, any exception happening in your Rails application will bubble up

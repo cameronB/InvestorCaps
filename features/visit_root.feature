@@ -1,7 +1,7 @@
 Feature: User visits InvestorCaps
 
 Background:
-  Given I am on InvestorCaps
+  Given I visit InvestorCaps
 
-Scenario: Search for a term
-    Then I should see the title "InvestorCaps | Home"
+Scenario: The home page title is as expected
+  Then I should see the title "InvestorCaps | Home"
